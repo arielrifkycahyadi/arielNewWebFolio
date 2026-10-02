@@ -446,22 +446,17 @@
       renderCertificates(button.dataset.category);
     });
 
+    // Pure Cloud & Client Fallback Database Sync Loader
     async function initCertificatesData() {
-      try {
-        const res = await fetch('/api/certificates');
-        const json = await res.json();
-        if (json.success && json.data && json.data.length > 0) {
-          activeCertificates = json.data;
-          renderCertificates(selectedCategory);
-          return;
-        }
-      } catch (e) {}
-
-      if (typeof getLiveCertificates === 'function') {
-        const liveCerts = await getLiveCertificates(defaultCertificates);
-        if (liveCerts && liveCerts.length > 0) {
-          activeCertificates = liveCerts;
-          renderCertificates(selectedCategory);
+      if (window.ArielCloud) {
+        try {
+          const liveCerts = await window.ArielCloud.getCertificates(defaultCertificates);
+          if (liveCerts && liveCerts.length > 0) {
+            activeCertificates = liveCerts;
+            renderCertificates(selectedCategory);
+          }
+        } catch (err) {
+          console.warn('Supabase certificates notice, using local catalog:', err);
         }
       }
     }

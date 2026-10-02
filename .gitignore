@@ -1,4 +1,24 @@
+# Dependencies
 node_modules/
+package-lock.json
+
+# Environment Variables
 .env
+.env.local
+.env.*.local
+
+# Operating System Files
 .DS_Store
+Thumbs.db
+
+# Archives & Temporary Data
+*.zip
+*.tar.gz
+*.rar
 *.log
+uploads/
+data/
+
+# Editor & IDE
+.vscode/
+.idea/

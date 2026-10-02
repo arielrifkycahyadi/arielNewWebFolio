@@ -494,23 +494,17 @@
       }
     });
 
-    // Asynchronous Node.js & Cloud Database Sync Loader
+    // Pure Cloud & Client Fallback Database Sync Loader
     async function initProjectsData() {
-      try {
-        const res = await fetch('/api/projects');
-        const json = await res.json();
-        if (json.success && json.data && json.data.length > 0) {
-          activeProjects = json.data;
-          updateFilters();
-          return;
-        }
-      } catch (e) {}
-
-      if (typeof getLiveProjects === 'function') {
-        const liveData = await getLiveProjects(typeof projects !== 'undefined' ? projects : []);
-        if (liveData && liveData.length > 0) {
-          activeProjects = liveData;
-          updateFilters();
+      if (window.ArielCloud) {
+        try {
+          const liveData = await window.ArielCloud.getProjects(typeof projects !== 'undefined' ? projects : []);
+          if (liveData && liveData.length > 0) {
+            activeProjects = liveData;
+            updateFilters();
+          }
+        } catch (err) {
+          console.warn('Supabase fetch notice, using local catalog:', err);
         }
       }
     }
