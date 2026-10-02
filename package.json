@@ -4,8 +4,8 @@
   "description": "Portofolio Interaktif & CMS Vault Ariel Usman (MADEAI) - Jamstack Edge CDN & Supabase Cloud",
   "scripts": {
     "build": "echo 'Static portfolio ready for Vercel'",
-    "start": "node server.js",
-    "dev": "node --watch server.js"
+    "start": "node local-server.js",
+    "dev": "node --watch local-server.js"
   },
   "keywords": [
     "portfolio",
@@ -17,6 +17,9 @@
   "author": "Ariel Usman",
   "license": "MIT",
   "dependencies": {
-    "@supabase/supabase-js": "^2.49.1"
+    "@supabase/supabase-js": "^2.49.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2"
   }
 }
