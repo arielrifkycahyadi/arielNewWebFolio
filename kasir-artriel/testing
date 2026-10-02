@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ollama: LLM Lokal di Jari Anda</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-purple-500 to-blue-500 text-white py-20">
+        <div class="container mx-auto text-center">
+            <h1 class="text-5xl font-bold mb-4">Ollama: Kendalikan Model Bahasa Anda</h1>
+            <p class="text-xl mb-8">Jalankan model bahasa besar (LLM) favorit Anda secara lokal tanpa konfigurasi yang rumit.</p>
+            <a href="https://ollama.com/" class="bg-white text-purple-700 py-3 px-6 rounded-lg hover:bg-purple-100 hover:text-purple-800">Pelajari Lebih Lanjut</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="container mx-auto py-16">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4">Apa Itu Ollama?</h2>
+            <p class="text-gray-600">Ollama adalah framework yang memungkinkan Anda menjalankan model bahasa besar (LLM) seperti Llama 2, Mistral, dan banyak lagi, langsung di komputer Anda.  Ini memungkinkan Anda untuk bereksperimen dengan LLM tanpa memerlukan pengetahuan tentang infrastruktur atau konfigurasi yang rumit.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div>
+                <h3 class="text-2xl font-bold mb-4">Keuntungan Menggunakan Ollama</h3>
+                <ul class="list-disc list-inside">
+                    <li><strong>Privasi:</strong> Data Anda tetap berada di komputer Anda.</li>
+                    <li><strong>Kontrol:</strong> Anda memiliki kendali penuh atas model dan data Anda.</li>
+                    <li><strong>Offline:</strong> Bekerja tanpa koneksi internet.</li>
+                    <li><strong>Kustomisasi:</strong>  Sesuaikan model dan aplikasi Anda.</li>
+                    <li><strong>Gratis & Sumber Terbuka:</strong> Gunakan dan modifikasi sesuai kebutuhan.</li>
+                </ul>
+            </div>
+            <div>
+                <img src="https://ollama.com/assets/hero-screenshot.png" alt="Screenshot Ollama" class="rounded-lg shadow-lg">
+            </div>
+        </div>
+    </section>
+
+    <!-- Getting Started Section -->
+    <section class="bg-gray-200 py-16">
+        <div class="container mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-8">Memulai dengan Ollama</h2>
+            <p class="text-gray-600">Menginstal dan menggunakan Ollama sangatlah mudah. Berikut adalah langkah-langkahnya:</p>
+            <ol class="list-decimal list-inside mt-6">
+                <li>Unduh Ollama dari <a href="https://ollama.com/download">https://ollama.com/download</a></li>
+                <li>Instal Ollama di komputer Anda.</li>
+                <li>Buka terminal Anda dan jalankan `ollama run llama2` untuk memulai.</li>
+                <li>Mulai berinteraksi dengan model!</li>
+            </ol>
+            <a href="https://ollama.com/docs" class="bg-purple-500 text-white py-3 px-6 rounded-lg hover:bg-purple-600 hover:text-white mt-8">Dokumentasi Lengkap</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-4 text-center">
+        <p>&copy; 2023 Ollama. Semua hak dilindungi.</p>
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tentang Saya | Ariel Usman</title>
+  <meta name="description" content="Riwayat hidup, biografi, perjalanan karir, dan kombinasi keahlian Ariel Usman (MADEAI) sebagai Content Creator, Programmer, & Polymath." />
+  <meta name="keywords" content="Ariel Usman, Biografi Ariel Usman, Riwayat Hidup Ariel Usman, MadeAI, Makassar, Pendidikan Teknik Informatika UNM" />
+  <meta name="author" content="Ariel Usman" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Tentang Saya | Ariel Usman" />
+  <meta property="og:description" content="Riwayat hidup, biografi, perjalanan karir, dan kombinasi keahlian Ariel Usman (MADEAI)." />
+  <meta property="og:image" content="assets/foto-ariel-utama.jpg" />
+
+  <!-- Tailwind CSS v4 Play CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+
+    .custom-gradient {
+      background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 50%, #eff6ff 100%);
+    }
+  </style>
+</head>
+
+<body class="custom-gradient text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 group">
+        <div
+          class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-emerald-200 group-hover:scale-105 transition-transform">
+          AU
+        </div>
+        <div>
+          <span class="font-extrabold text-lg tracking-tight block">Ariel Usman</span>
+          <span class="text-xs text-slate-500 -mt-1 block">Creative Polymath & Creator</span>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 font-medium">
+        <a href="/" class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="home" class="w-4 h-4"></i> Beranda
+        </a>
+        <a href="/dashboard"
+          class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i> Dashboard
+        </a>
+        <a href="/about"
+          class="text-emerald-600 hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+          <i data-lucide="user" class="w-4 h-4"></i> Tentang Saya
+        </a>
+        <a href="/contact"
+          class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-4 h-4"></i> Kontak
+        </a>
+      </div>
+
+      <div>
+        <a href="/dashboard"
+          class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition-all text-sm">
+          Portofolio
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- About Content Section -->
+  <main class="max-w-4xl mx-auto px-6 py-16 w-full flex-grow flex flex-col gap-12">
+    <!-- Intro Block -->
+    <div
+      class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col md:flex-row gap-8 items-center">
+      <img src="assets/foto-ariel-utama.jpg" alt="Ariel Usman"
+        class="w-32 h-32 rounded-3xl object-cover shadow-md border border-slate-100 shrink-0">
+      <div>
+        <h1 class="text-3xl font-extrabold text-slate-900 leading-tight">Halo, Saya Ariel Usman</h1>
+        <p class="text-slate-500 font-semibold mt-1">Content Creator, Programmer, & Polymath</p>
+        <p class="text-slate-600 text-sm leading-relaxed mt-4">
+          Saya senang mengeksplorasi ilmu baru secara mandiri. Mulai dari membangun aplikasi interaktif mini hingga
+          menyelami teori sosiologi-politik. Proyek-proyek di halaman ini adalah bentuk komitmen saya dalam menuangkan
+          riset ke dalam wujud visual yang mudah dinikmati siapapun.
+        </p>
+      </div>
+    </div>
+
+    <!-- Biography / Riwayat Hidup -->
+    <section class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-500">
+          <i data-lucide="book-open" class="w-5 h-5"></i>
+        </div>
+        <h2 class="text-2xl font-extrabold text-slate-900">Riwayat Hidup & Biografi</h2>
+      </div>
+      <div class="text-slate-600 text-sm leading-relaxed flex flex-col gap-4">
+        <p>
+          <strong>Ariel Rifky Cahyadi Usman</strong> atau akrab dipanggil <strong>Ariel Usman</strong>, lahir di
+          Makassar pada tanggal 29 Mei 2002. Ariel merupakan anak kedua dari 2 bersaudara, lahir dari pasangan akademisi
+          <strong>Dr. Usman, S.Ag., M.Ag.</strong> dan <strong>Dr. Syamsidar, S.Ag., M.Ag.</strong>
+        </p>
+        <p>
+          Ariel memulai perjalanan pendidikan formalnya pada tahun 2007 di <strong>SD Inpres BTN IKIP 1
+            Makassar</strong> (selesai tahun 2013). Minat akademis dan rasa ingin tahunya berlanjut ke <strong>SMP
+            Negeri 33 Makassar</strong> (selesai tahun 2016). Pada tahun yang sama, ia memilih jalur kejuruan teknologi
+          dengan masuk ke <strong>SMK TELKOM Makassar</strong> (jurusan teknik komputer dan jaringan, lulus pada tahun
+          2019).
+        </p>
+        <p>
+          Melanjutkan kecintaannya pada dunia komputasi dan edukasi, di tahun 2019 Ariel menempuh pendidikan tinggi
+          jenjang Strata-1 di <strong>Universitas Negeri Makassar (UNM)</strong>, Fakultas Teknik, Jurusan Teknik
+          Informatika dan Komputer, dengan program studi <strong>Pendidikan Teknik Informatika dan Komputer
+            (PTIK)</strong>.
+        </p>
+      </div>
+    </section>
+
+    <!-- Professional Timeline (Kerja & Magang) -->
+    <section class="flex flex-col gap-12">
+      <div class="text-center max-w-xl mx-auto mb-4">
+        <h2 class="text-2xl font-extrabold text-slate-900">Perjalanan Karir & Magang</h2>
+        <p class="text-xs text-slate-500 mt-1">Dokumentasi portofolio profesional dan riwayat kerja nyata Ariel Usman.
+        </p>
+      </div>
+
+      <!-- Pengalaman Kerja Section -->
+      <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-2">
+          <i data-lucide="briefcase" class="w-5 h-5 text-emerald-500"></i>
+          <h3 class="font-extrabold text-lg text-slate-900">Pengalaman Kerja</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Job 1: Photographer -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="h-44 overflow-hidden relative">
+              <img src="assets/foto-ariel-2.jpg" alt="Ariel Street Photography" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500 text-white">Januari 2026 - Sekarang</span>
+            </div>
+            <div class="p-6 flex flex-col gap-2">
+              <h4 class="font-bold text-slate-900 text-sm">Freelance Photographer</h4>
+              <p class="text-[11px] text-slate-500 -mt-1">Makassar | Freelance</p>
+              <p class="text-xs text-slate-600 leading-relaxed mt-2">
+                Fokus pada street photography, serta mengabadikan berbagai acara kasual seperti wisuda kelulusan dan dokumentasi perjalanan grup maupun keluarga dengan gaya visual yang natural.
+              </p>
+            </div>
+          </div>
+
+          <!-- Job 2: Graphic Designer -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="h-44 overflow-hidden relative">
+              <img src="assets/foto-ariel-graphic-designer.jpg" alt="Ariel Graphic Designer" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500 text-white">Mei 2024 - Sekarang</span>
+            </div>
+            <div class="p-6 flex flex-col gap-2">
+              <h4 class="font-bold text-slate-900 text-sm">Graphic Designer</h4>
+              <p class="text-[11px] text-slate-500 -mt-1">TK Adilika Makassar | Freelance</p>
+              <p class="text-xs text-slate-600 leading-relaxed mt-2">
+                Bertanggung jawab membuat desain media pembelajaran, poster, spanduk sekolah, dan kartu nama secara rutin setiap awal tahun ajaran baru dan pergantian semester.
+              </p>
+            </div>
+          </div>
+
+          <!-- Job 3: Assistant Website Manager -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="h-44 overflow-hidden relative">
+              <img src="assets/foto-ariel-web-dev.jpg" alt="Ariel Web Dev" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500 text-white">Januari 2026 - Agustus 2026</span>
+            </div>
+            <div class="p-6 flex flex-col gap-2">
+              <h4 class="font-bold text-slate-900 text-sm">Assistant Website Manager</h4>
+              <p class="text-[11px] text-slate-500 -mt-1">KPM FDK & Jurnal Mimbar Kesejahteraan Sosial | Freelance</p>
+              <p class="text-xs text-slate-600 leading-relaxed mt-2">
+                Membantu merancang dan memelihara website jurnal ilmiah yang diserahkan ke dosen pengelola website jurnal.
+              </p>
+            </div>
+          </div>
+
+          <!-- Job 4: IT Support -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="h-44 overflow-hidden relative">
+              <img src="assets/foto-ariel-it-support.jpg" alt="Ariel IT Support" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500 text-white">September 2025 - Desember 2025</span>
+            </div>
+            <div class="p-6 flex flex-col gap-2">
+              <h4 class="font-bold text-slate-900 text-sm">IT Support</h4>
+              <p class="text-[11px] text-slate-500 -mt-1">Jurusan Kessos UINAM | Freelance</p>
+              <p class="text-xs text-slate-600 leading-relaxed mt-2">
+                Membantu memelihara sistem IT lokal dan mengarsipkan berkas-berkas penting untuk persiapan akreditasi Jurusan Kesejahteraan Sosial UIN Alauddin Makassar.
+              </p>
+            </div>
+          </div>
+
+          <!-- Job 5: Content Creator -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="h-44 overflow-hidden relative">
+              <img src="assets/foto-ariel-content.jpeg" alt="Ariel Content Creator" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <span class="absolute bottom-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500 text-white">Februari 2020 - Juli 2020</span>
+            </div>
+            <div class="p-6 flex flex-col gap-2">
+              <h4 class="font-bold text-slate-900 text-sm">Content Creator</h4>
+              <p class="text-[11px] text-slate-500 -mt-1">1cak.com | Freelance (Online)</p>
+              <p class="text-xs text-slate-600 leading-relaxed mt-2">
+                Mengelola kanal hiburan 1cak.com/of-mr_garbage, merancang komik strip visual berseri "Bu Guru Pain", menggambar karakter PNGTuber, dan memoderasi interaksi komunitas digital.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pengalaman Magang Section -->
+      <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-2 border-b border-slate-100 pb-3 mb-2">
+          <i data-lucide="graduation-cap" class="w-5 h-5 text-emerald-500"></i>
+          <h3 class="font-extrabold text-lg text-slate-900">Pengalaman Magang</h3>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Internship 1 -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="h-44 overflow-hidden relative">
+              <img src="assets/foto-asisten-guru-smk-mengajar.jpg" alt="Ariel mengajar di SMKN 2"
+                class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <span
+                class="absolute bottom-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500 text-white">September
+                2023 - November 2023</span>
+            </div>
+            <div class="p-6 flex flex-col gap-2">
+              <h4 class="font-bold text-slate-900 text-sm">Asisten Guru (Tenaga Pendidik)</h4>
+              <p class="text-[11px] text-slate-500 -mt-1">SMKN 2 Makassar</p>
+              <p class="text-xs text-slate-600 leading-relaxed mt-2">
+                Mengajar mata pelajaran kejuruan produktif Teknik Komputer & Jaringan (TKJ), melatih manajemen kelas
+                siswa, dan menyusun administrasi guru kurikulum.
+              </p>
+            </div>
+          </div>
+
+          <!-- Internship 2 -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="h-44 overflow-hidden relative">
+              <img src="assets/foto-di-dprd-kerja.jpg" alt="Ariel di Kantor DPRD" class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <span
+                class="absolute bottom-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500 text-white">Juli
+                2022 - September 2022</span>
+            </div>
+            <div class="p-6 flex flex-col gap-2">
+              <h4 class="font-bold text-slate-900 text-sm">Staf Administrasi & IT Support</h4>
+              <p class="text-[11px] text-slate-500 -mt-1">Sekretariat DPRD Provinsi Sulsel</p>
+              <p class="text-xs text-slate-600 leading-relaxed mt-2">
+                Membantu dukungan administratif perkantoran birokrasi, mengelola database arsip, mendokumentasikan
+                agenda, serta menangani pemeliharaan perangkat lunak/keras komputer kantor.
+              </p>
+            </div>
+          </div>
+
+          <!-- Internship 3 -->
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col">
+            <div class="h-44 overflow-hidden relative">
+              <img src="assets/foto-smk-ariel.jpg" alt="Ariel Magang di Telkom Akses"
+                class="w-full h-full object-cover">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
+              <span
+                class="absolute bottom-3 left-3 text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-emerald-500 text-white">Juli
+                2018 - September 2018</span>
+            </div>
+            <div class="p-6 flex flex-col gap-2">
+              <h4 class="font-bold text-slate-900 text-sm">Teknisi Lapangan & Help Desk</h4>
+              <p class="text-[11px] text-slate-500 -mt-1">PT Telkom Akses Makassar</p>
+              <p class="text-xs text-slate-600 leading-relaxed mt-2">
+                Praktek lapangan telekomunikasi menangani instalasi serat optik Indihome, troubleshooting jaringan,
+                serta membantu operasional unit Help Desk.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Bento Grid -->
+    <section>
+      <h2 class="text-2xl font-extrabold text-slate-900 text-center mb-8">Kombinasi Keahlian</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <!-- Web Dev -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4">
+          <div class="w-12 h-12 bg-emerald-50 text-emerald-500 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="code" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900">Web Development</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Membangun single-page aplikasi interaktif, simulator
+              dinamis, dan dashboard modern murni di sisi klien.</p>
+          </div>
+        </div>
+
+        <!-- 2D Animator -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4">
+          <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="play" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900">2D Animation & Body Mechanics</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Fokus pada penerapan 12 prinsip animasi dasar,
+              kontrol pergerakan fisik (Body Mechanics), dan pergerakan halus (Fluidity) untuk stiker digital/GIF.</p>
+          </div>
+        </div>
+
+        <!-- Creative Designer -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4">
+          <div class="w-12 h-12 bg-blue-50 text-blue-500 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="palette" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900">Creative Graphic Design</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Merancang materi komunikasi visual komersial (F&B)
+              dengan manipulasi foto berani, serta tata letak desain korporat yang formal dan rapi.</p>
+          </div>
+        </div>
+
+        <!-- Meme Admin -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4">
+          <div class="w-12 h-12 bg-pink-50 text-pink-500 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="smile" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900">Meme Account Management</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Mengelola akun Mr. Garbage dan merancang meme/komik
+              strip untuk membangun engagement interaksi tinggi dengan audiens internet culture.</p>
+          </div>
+        </div>
+
+        <!-- Video Editor -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4">
+          <div class="w-12 h-12 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="video" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900">Video Editing & PNGTuber Assets</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Siklus lengkap produksi video edukatif/hiburan
+              'Faceless Channel' menggunakan model avatar buatan sendiri dan teknik retensi penonton tinggi.</p>
+          </div>
+        </div>
+
+        <!-- Multimedia generalist -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm flex gap-4">
+          <div class="w-12 h-12 bg-amber-50 text-amber-500 rounded-xl flex items-center justify-center shrink-0">
+            <i data-lucide="sparkles" class="w-6 h-6"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900">Multimedia Generalist</h3>
+            <p class="text-slate-500 text-xs mt-1 leading-relaxed">Eksplorasi lintas media visual mulai dari pixel art
+              retro, flat design minimalis, hingga fotografi arsitektur perkotaan.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Certificates Summary Section -->
+    <section class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-500">
+          <i data-lucide="award" class="w-5 h-5"></i>
+        </div>
+        <h2 class="text-2xl font-extrabold text-slate-900">Sertifikat & Kredensial</h2>
+      </div>
+      <p class="text-slate-600 text-sm leading-relaxed">
+        Ariel terus meningkatkan standar keahliannya melalui berbagai program pelatihan dan sertifikasi terverifikasi.
+        Beberapa kredensial utama meliputi:
+      </p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="flex items-start gap-3">
+          <div class="text-emerald-500 mt-0.5"><i data-lucide="check-circle-2" class="w-4 h-4"></i></div>
+          <div>
+            <h4 class="font-bold text-sm text-slate-950">AI & Otomasi Profesional</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">Sertifikasi AI & Automation, Python Programming (Google), dan
+              Vibe Coding.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="text-emerald-500 mt-0.5"><i data-lucide="check-circle-2" class="w-4 h-4"></i></div>
+          <div>
+            <h4 class="font-bold text-sm text-slate-950">Canva & Desain Kreatif</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">Sertifikat Resmi Canva Academy (Kampanye Kreatif & Konten
+              Memikat) dan Digital Illustration.</p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="text-emerald-500 mt-0.5"><i data-lucide="check-circle-2" class="w-4 h-4"></i></div>
+          <div>
+            <h4 class="font-bold text-sm text-slate-950">Office & Excel Specialist</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">Spesialisasi Sales Dashboard & Analytics di Microsoft Excel.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-3">
+          <div class="text-emerald-500 mt-0.5"><i data-lucide="check-circle-2" class="w-4 h-4"></i></div>
+          <div>
+            <h4 class="font-bold text-sm text-slate-950">Pendidikan & Praktek Lapangan</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">Becoming a Teacher Certified, serta Praktek Kerja Lapangan
+              Sekretariat DPRD.</p>
+          </div>
+        </div>
+      </div>
+
+      <a href="/sertifikat"
+        class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl transition-all text-sm flex items-center gap-2 self-start mt-2">
+        Buka Galeri Kredensial <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="bg-white p-8 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-6">
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-500">
+          <i data-lucide="image" class="w-5 h-5"></i>
+        </div>
+        <h2 class="text-2xl font-extrabold text-slate-900">Galeri Aktivitas</h2>
+      </div>
+      <p class="text-slate-600 text-sm leading-relaxed">
+        Beberapa dokumentasi visual dan cuplikan aktivitas harian Ariel Usman dalam berkarya, berdiskusi, dan
+        mengembangkan konten digital.
+      </p>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="rounded-2xl overflow-hidden border border-slate-100 shadow-sm h-40 group">
+          <img src="assets/foto-ariel-2.jpg" alt="Ariel Usman - Aktif"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-slate-100 shadow-sm h-40 group">
+          <img src="assets/foto-ariel-3.jpg" alt="Ariel Usman - Karya"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-slate-100 shadow-sm h-40 group">
+          <img src="assets/foto-ariel-4.jpg" alt="Ariel Usman - Potret"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </div>
+        <div class="rounded-2xl overflow-hidden border border-slate-100 shadow-sm h-40 group">
+          <img src="assets/foto-ariel-5.jpg" alt="Ariel Usman - Kreator"
+            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+        </div>
+      </div>
+    </section>
+
+    <!-- Values / Vision -->
+    <div
+      class="bg-slate-900 text-slate-100 p-8 rounded-3xl flex flex-col md:flex-row justify-between items-center gap-8 shadow-lg shadow-emerald-950/10">
+      <div class="max-w-lg">
+        <h2 class="text-xl font-bold text-white mb-2">Lihat Portofolio Lengkap</h2>
+        <p class="text-slate-400 text-xs leading-relaxed">
+          Semua proyek web murni, simulator interaktif, dan galeri desain kreatif saya tersedia di dashboard utama.
+        </p>
+      </div>
+      <a href="/dashboard"
+        class="bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3 px-6 rounded-xl transition-colors whitespace-nowrap text-sm flex items-center gap-2">
+        <i data-lucide="layout-grid" class="w-4 h-4"></i> Buka Galeri Portofolio
+      </a>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-8 mt-auto border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 text-center text-xs">
+      &copy; 2026 Ariel Usman. Seluruh Hak Cipta Dilindungi.
+    </div>
+  </footer>
+
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+
+</html>

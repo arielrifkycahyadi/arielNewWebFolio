@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard Portofolio | Ariel Usman</title>
+  <meta name="description" content="Katalog dasbor portofolio interaktif Ariel Usman (MADEAI). Jelajahi 80+ proyek website, simulator game/fisika, karya tulis, dan branding." />
+  <meta name="keywords" content="Ariel Usman, Portofolio Ariel Usman, Simulator Fisika, Kalimba Virtual, MadeAI, Web App" />
+  <meta name="author" content="Ariel Usman" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dashboard Portofolio | Ariel Usman" />
+  <meta property="og:description" content="Jelajahi 80+ proyek website, simulator game/fisika, karya tulis, dan branding milik Ariel Usman." />
+  <meta property="og:image" content="assets/foto-ariel-utama.jpg" />
+  
+  <!-- Tailwind CSS v4 Play CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .custom-gradient {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="custom-gradient text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-emerald-200 group-hover:scale-105 transition-transform">
+          AU
+        </div>
+        <div>
+          <span class="font-extrabold text-lg tracking-tight block">Ariel Usman</span>
+          <span class="text-xs text-slate-500 -mt-1 block">Creative Polymath & Creator</span>
+        </div>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8 font-medium">
+        <a href="/" class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="home" class="w-4 h-4"></i> Beranda
+        </a>
+        <a href="/dashboard" class="text-emerald-600 hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i> Dashboard
+        </a>
+        <a href="/about" class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="user" class="w-4 h-4"></i> Tentang Saya
+        </a>
+        <a href="/contact" class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-4 h-4"></i> Kontak
+        </a>
+      </div>
+
+      <div>
+        <a href="/contact" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition-all text-sm">
+          Hubungi Saya
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Dashboard Container -->
+  <main class="max-w-7xl mx-auto px-6 py-8 w-full flex-grow flex flex-col gap-6">
+    <!-- Header Controls -->
+    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-4">
+      <div>
+        <h1 class="text-2xl font-extrabold text-slate-900">Galeri Portofolio Interaktif</h1>
+        <p class="text-sm text-slate-500 mt-1">Eksplorasi total 80+ proyek web, tulisan, dan konsultasi kreatif buatan Ariel Usman.</p>
+      </div>
+
+      <!-- Search Box -->
+      <div class="relative w-full md:w-80">
+        <span class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </span>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Cari nama atau deskripsi..." 
+          class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+        />
+      </div>
+    </div>
+
+    <!-- Category Tabs (Reordered) -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="categoryTabs">
+      <button data-category="all" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-emerald-500 text-white shadow-sm transition-all cursor-pointer">
+        Semua Proyek
+      </button>
+      <button data-category="creative" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        🎨 Desain & Kreatif
+      </button>
+      <button data-category="interactive" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        🎰 Simulator & Game
+      </button>
+      <button data-category="learning" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        📖 Edukasi & Pengetahuan
+      </button>
+      <button data-category="lifestyle" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        🌱 Mindset & Hubungan
+      </button>
+      <button data-category="tools" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        🛠️ Utilitas & App
+      </button>
+      <button data-category="writing" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        ✍️ Karya Tulis & Opini
+      </button>
+      <button data-category="branding" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        💼 Branding & Konsultan
+      </button>
+    </div>
+
+    <!-- Content Workspace -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start flex-grow">
+      
+      <!-- Left Column: Paginated Cards -->
+      <div class="lg:col-span-7 flex flex-col gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4" id="projectGrid">
+          <!-- Cards injected via JS -->
+        </div>
+
+        <!-- Pagination Controls -->
+        <div class="flex items-center justify-between bg-white px-6 py-4 rounded-2xl border border-slate-100 shadow-sm mt-auto" id="pagination">
+          <button id="prevPage" class="flex items-center gap-1.5 px-4 py-2 border border-slate-200 rounded-xl text-sm font-medium hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer">
+            <i data-lucide="chevron-left" class="w-4 h-4"></i> Sebelumnya
+          </button>
+          <span class="text-sm font-semibold text-slate-500" id="pageIndicator">Halaman 1 dari 1</span>
+          <button id="nextPage" class="flex items-center gap-1.5 px-4 py-2 border border-slate-200 rounded-xl text-sm font-medium hover:bg-slate-50 disabled:opacity-50 disabled:pointer-events-none transition-all cursor-pointer">
+            Berikutnya <i data-lucide="chevron-right" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Right Column: Sticky Live Preview Panel -->
+      <div class="lg:col-span-5 lg:sticky lg:top-24 bg-white border border-slate-100 rounded-3xl shadow-sm p-6 flex flex-col gap-4 h-[640px]">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2 text-slate-700">
+            <i data-lucide="eye" class="w-5 h-5 text-emerald-500"></i>
+            <h2 class="font-extrabold text-lg text-slate-900">Live Preview</h2>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-500 rounded-full" id="previewCategory">Pilih Proyek</span>
+        </div>
+
+        <!-- Preview Interactive Frame / Placeholder -->
+        <div class="flex-grow bg-slate-50 rounded-2xl border border-slate-200/60 overflow-hidden relative flex flex-col items-center justify-center text-center p-6" id="previewViewport">
+          <!-- Default State -->
+          <div class="flex flex-col items-center gap-3 text-slate-400" id="previewPlaceholder">
+            <div class="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-300">
+              <i data-lucide="play-circle" class="w-10 h-10"></i>
+            </div>
+            <div>
+              <p class="font-bold text-slate-600 text-sm">Belum Ada Proyek Terpilih</p>
+              <p class="text-xs text-slate-400 max-w-xs mt-1">Klik salah satu kartu di sebelah kiri untuk mengaktifkan live preview dan deskripsi lengkap.</p>
+            </div>
+          </div>
+
+          <!-- Active Iframe (hidden by default) -->
+          <iframe id="previewIframe" class="w-full h-full border-none hidden" title="Project Live Preview"></iframe>
+        </div>
+
+        <!-- Preview Info Panel -->
+        <div id="previewMeta" class="hidden flex flex-col gap-3">
+          <div>
+            <h3 class="font-bold text-slate-950 text-base leading-snug" id="previewTitle">Judul Proyek</h3>
+            <p class="text-slate-600 text-xs mt-1 leading-relaxed" id="previewDesc">Deskripsi proyek...</p>
+          </div>
+          <div class="flex gap-3">
+            <a href="#" target="_blank" rel="noopener noreferrer" id="btnOpenNew" class="flex-grow bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-xl font-semibold text-center text-sm shadow-sm transition-all flex items-center justify-center gap-2">
+              <i data-lucide="external-link" class="w-4 h-4"></i> Buka Penuh
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-slate-900 text-slate-400 py-8 mt-auto border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 text-center text-xs">
+      &copy; 2026 Ariel Usman. Seluruh Hak Cipta Dilindungi.
+    </div>
+  </footer>
+
+  <script src="projects.js"></script>
+  <!-- Supabase Live Sync -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script>
+    // State management
+    let currentCategory = 'all';
+    let searchQuery = '';
+    let currentPage = 1;
+    const itemsPerPage = 8;
+    let activeProjects = typeof projects !== 'undefined' ? [...projects] : [];
+    let filteredProjects = [...activeProjects];
+
+    // DOM Elements
+    const projectGrid = document.getElementById('projectGrid');
+    const searchInput = document.getElementById('searchInput');
+    const categoryTabs = document.getElementById('categoryTabs');
+    const prevPageBtn = document.getElementById('prevPage');
+    const nextPageBtn = document.getElementById('nextPage');
+    const pageIndicator = document.getElementById('pageIndicator');
+
+    const previewCategory = document.getElementById('previewCategory');
+    const previewViewport = document.getElementById('previewViewport');
+    const previewPlaceholder = document.getElementById('previewPlaceholder');
+    const previewIframe = document.getElementById('previewIframe');
+    const previewMeta = document.getElementById('previewMeta');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewDesc = document.getElementById('previewDesc');
+    const btnOpenNew = document.getElementById('btnOpenNew');
+
+    // Category mapping text
+    const categoryNames = {
+      all: 'Semua Proyek',
+      writing: 'Karya Tulis & Opini',
+      creative: 'Desain & Kreatif',
+      branding: 'Branding & Konsultan',
+      interactive: 'Simulator & Game',
+      learning: 'Edukasi & Pengetahuan',
+      lifestyle: 'Mindset & Hubungan',
+      tools: 'Utilitas & App',
+      other: 'Lainnya'
+    };
+
+    // Filter and Search logic
+    function updateFilters() {
+      filteredProjects = activeProjects.filter(proj => {
+        const matchesCategory = currentCategory === 'all' || proj.category === currentCategory;
+        const matchesSearch = (proj.title || '').toLowerCase().includes(searchQuery.toLowerCase()) ||
+                              (proj.description || '').toLowerCase().includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearch;
+      });
+
+      currentPage = 1;
+      renderDashboard();
+    }
+
+    // Render cards
+    function renderDashboard() {
+      projectGrid.innerHTML = '';
+      
+      const totalPages = Math.ceil(filteredProjects.length / itemsPerPage) || 1;
+      
+      // Bounds
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      // Slice items
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = Math.min(startIndex + itemsPerPage, filteredProjects.length);
+      const pageItems = filteredProjects.slice(startIndex, endIndex);
+
+      // Render Cards
+      if (pageItems.length === 0) {
+        projectGrid.innerHTML = `
+          <div class="col-span-full bg-white p-8 rounded-3xl border border-slate-100 text-center text-slate-500">
+            <i data-lucide="info" class="w-8 h-8 mx-auto mb-2 text-slate-400"></i>
+            Tidak ditemukan proyek yang cocok.
+          </div>
+        `;
+      } else {
+        pageItems.forEach((proj) => {
+          const card = document.createElement('div');
+          card.className = "bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover:border-emerald-500/50 hover:shadow-md transition-all cursor-pointer group";
+          
+          let catIcon = '🔷';
+          if (proj.category === 'writing') catIcon = '✍️';
+          if (proj.category === 'creative') catIcon = '🎨';
+          if (proj.category === 'branding') catIcon = '💼';
+          if (proj.category === 'interactive') catIcon = '🎰';
+          if (proj.category === 'learning') catIcon = '📖';
+          if (proj.category === 'lifestyle') catIcon = '🌱';
+          if (proj.category === 'tools') catIcon = '🛠️';
+
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xl">${catIcon}</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-500">${categoryNames[proj.category] || proj.category}</span>
+              </div>
+              <h3 class="font-bold text-slate-900 group-hover:text-emerald-600 transition-colors line-clamp-1 text-sm">${proj.title}</h3>
+              <p class="text-[11px] text-slate-500 mt-1 line-clamp-2 leading-relaxed">${proj.description}</p>
+            </div>
+            <div class="mt-4 flex items-center justify-between border-t border-slate-50/60 pt-3">
+              <span class="text-[10px] text-slate-400 font-semibold flex items-center gap-1">
+                <i data-lucide="link-2" class="w-3 h-3"></i> ${proj.url ? (proj.driveId ? 'Google Drive' : 'Live URL') : 'Coming Soon'}
+              </span>
+              <span class="text-emerald-500 group-hover:translate-x-1 transition-transform flex items-center gap-1 font-bold text-xs">
+                Preview <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </span>
+            </div>
+          `;
+
+          card.addEventListener('click', () => selectProject(proj));
+          projectGrid.appendChild(card);
+        });
+      }
+
+      // Pagination indicators
+      pageIndicator.textContent = `Halaman ${currentPage} dari ${totalPages}`;
+      prevPageBtn.disabled = currentPage === 1;
+      nextPageBtn.disabled = currentPage === totalPages;
+
+      lucide.createIcons();
+    }
+
+    // Select project & trigger iframe preview
+    function selectProject(proj) {
+      previewTitle.textContent = proj.title;
+      previewDesc.textContent = proj.description;
+      previewCategory.textContent = categoryNames[proj.category] || proj.category;
+
+      if (proj.driveId) {
+        // Embed Google Drive folder view
+        previewPlaceholder.classList.add('hidden');
+        previewIframe.classList.remove('hidden');
+        previewIframe.src = `https://drive.google.com/embeddedfolderview?id=${proj.driveId}#grid`;
+        btnOpenNew.href = proj.url;
+        btnOpenNew.classList.remove('pointer-events-none', 'opacity-50');
+      } else if (proj.url) {
+        previewPlaceholder.classList.add('hidden');
+        previewIframe.classList.remove('hidden');
+        previewIframe.src = proj.url;
+        btnOpenNew.href = proj.url;
+        btnOpenNew.classList.remove('pointer-events-none', 'opacity-50');
+      } else {
+        // Show placeholder for null links (development state)
+        previewIframe.classList.add('hidden');
+        previewIframe.src = '';
+        previewPlaceholder.classList.remove('hidden');
+        previewPlaceholder.innerHTML = `
+          <div class="flex flex-col items-center gap-3 text-slate-400">
+            <div class="w-16 h-16 rounded-2xl bg-amber-50 flex items-center justify-center text-amber-400">
+              <i data-lucide="construction" class="w-10 h-10"></i>
+            </div>
+            <div>
+              <p class="font-bold text-slate-700 text-sm">Sedang Dalam Pengembangan</p>
+              <p class="text-xs text-slate-400 max-w-xs mt-1">Proyek ini sedang dibangun dan akan segera dipublikasikan.</p>
+            </div>
+          </div>
+        `;
+        btnOpenNew.href = '#';
+        btnOpenNew.classList.add('pointer-events-none', 'opacity-50');
+      }
+
+      previewMeta.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    // Event Listeners
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      updateFilters();
+    });
+
+    categoryTabs.addEventListener('click', (e) => {
+      const button = e.target.closest('button');
+      if (!button) return;
+
+      // Switch active class
+      Array.from(categoryTabs.children).forEach(btn => {
+        btn.className = "px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer";
+      });
+      button.className = "px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-emerald-500 text-white shadow-sm transition-all cursor-pointer";
+
+      currentCategory = button.dataset.category;
+      updateFilters();
+    });
+
+    prevPageBtn.addEventListener('click', () => {
+      if (currentPage > 1) {
+        currentPage--;
+        renderDashboard();
+      }
+    });
+
+    nextPageBtn.addEventListener('click', () => {
+      const totalPages = Math.ceil(filteredProjects.length / itemsPerPage);
+      if (currentPage < totalPages) {
+        currentPage++;
+        renderDashboard();
+      }
+    });
+
+    // Asynchronous Node.js & Cloud Database Sync Loader
+    async function initProjectsData() {
+      try {
+        const res = await fetch('/api/projects');
+        const json = await res.json();
+        if (json.success && json.data && json.data.length > 0) {
+          activeProjects = json.data;
+          updateFilters();
+          return;
+        }
+      } catch (e) {}
+
+      if (typeof getLiveProjects === 'function') {
+        const liveData = await getLiveProjects(typeof projects !== 'undefined' ? projects : []);
+        if (liveData && liveData.length > 0) {
+          activeProjects = liveData;
+          updateFilters();
+        }
+      }
+    }
+
+    // Check for category query param
+    const urlParams = new URLSearchParams(window.location.search);
+    const catParam = urlParams.get('category');
+    if (catParam && categoryNames[catParam]) {
+      const targetBtn = categoryTabs.querySelector(`[data-category="${catParam}"]`);
+      if (targetBtn) {
+        targetBtn.click();
+      }
+    } else {
+      updateFilters();
+    }
+
+    // Trigger cloud sync in background
+    initProjectsData();
+
+    // Realtime Cloud Auto-Sync Listener
+    if (window.ArielCloud) {
+      window.ArielCloud.listen('projects', () => {
+        initProjectsData();
+      });
+    }
+  </script>
+</body>
+</html>

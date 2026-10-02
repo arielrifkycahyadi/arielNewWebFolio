@@ -1,0 +1,56 @@
+[
+  {
+    "id": "cert_1790929651992_1",
+    "title": "AI & Automation Specialist",
+    "issuer": "SkillID",
+    "category": "ai",
+    "path": "sertifkat/AI SkillID/AI & AUTOMATION.pdf",
+    "desc": "Sertifikasi kompetensi dalam otomatisasi alur kerja dan kecerdasan buatan terapan.",
+    "created_at": "2026-10-02T08:27:31.992Z"
+  },
+  {
+    "id": "cert_1790929651992_2",
+    "title": "Developing with AI (Vibe Coding)",
+    "issuer": "SkillID",
+    "category": "ai",
+    "path": "sertifkat/AI SkillID/DEVELOPING WITH AI VIBE CODING.pdf",
+    "desc": "Sertifikat keahlian menggunakan model AI untuk pemrograman kolaboratif/asisten coding.",
+    "created_at": "2026-10-02T08:27:31.992Z"
+  },
+  {
+    "id": "cert_1790929651992_3",
+    "title": "Professional Skill in AI",
+    "issuer": "SkillID",
+    "category": "ai",
+    "path": "sertifkat/AI SkillID/Professional Skill AI.pdf",
+    "desc": "Kompetensi tingkat lanjut penerapan AI pada solusi industri dan produktivitas harian.",
+    "created_at": "2026-10-02T08:27:31.992Z"
+  },
+  {
+    "id": "cert_1790929651992_4",
+    "title": "Crash Course on Python",
+    "issuer": "Google (via Coursera)",
+    "category": "ai",
+    "path": "sertifkat/AI Coursera/Coursera Crash Course on Python.pdf",
+    "desc": "Sertifikat dasar pemrograman berorientasi objek menggunakan Python.",
+    "created_at": "2026-10-02T08:27:31.992Z"
+  },
+  {
+    "id": "cert_1790929651992_5",
+    "title": "Kampanye Kreatif Skala Besar",
+    "issuer": "Canva Academy",
+    "category": "design",
+    "path": "sertifkat/Canva/ariel-rifky-cahyadi-kampanye-kreatif-skala-besar-certificate.pdf",
+    "desc": "Sertifikat merancang media publikasi visual skala industri menggunakan platform Canva.",
+    "created_at": "2026-10-02T08:27:31.992Z"
+  },
+  {
+    "id": "cert_1790929651992_6",
+    "title": "Excel Sales Analytics Specialist",
+    "issuer": "Microsoft Data Course",
+    "category": "office",
+    "path": "sertifkat/Speasialis Project Excel/Sales Analysis Excel/PROJECT CREATING SALES ANALYTICS IN EXCEL.pdf",
+    "desc": "Sertifikat kelulusan studi kasus visualisasi metrik bisnis penjualan dan analisis tren.",
+    "created_at": "2026-10-02T08:27:31.992Z"
+  }
+]

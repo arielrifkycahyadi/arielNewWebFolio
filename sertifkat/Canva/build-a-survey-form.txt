@@ -1,0 +1,40 @@
+** start of index.html **
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Survey Form</title>
+  </head>
+  <h1 id="title">Ariel Survey Form</h1>
+  <p id="description">Terima kasih telah meluangkan waktu untuk membantu kami meningkatkan platform ini.</p>
+  <form id="survey-form">
+    <label id="name-label">Nama
+  <input id="name" type="text" required placeholder="John Doe">
+  </label>
+  <label id="email-label">Email
+  <input id="email" type="email" required placeholder="contoh@email.com">
+  </label>
+  <label id="number-label">Umur
+  <input id="number" type="number" min="12" max="60" placeholder="12 - 60">
+  </label>
+  <select id="dropdown">
+    <option value="pelajar">Pelajar</option>
+    <option value="pengajar">Pengajar</option>
+    </select>
+    <p>Apa hobi kamu?</p>
+<input type="radio" name="hobi-sama" value="bola"> Main Bola
+<input type="radio" name="hobi-sama" value="gambar"> Menggambar
+
+<p>Makanan kesukaan kamu (boleh pilih banyak):</p>
+<input type="checkbox" value="cokelat"> Cokelat
+<input type="checkbox" value="es-krim"> Es Krim
+    
+    <textarea></textarea>
+    <button id="submit" type="submit">Submit</button>
+  </form>
+  <body></body>
+</html>
+
+** end of index.html **
+

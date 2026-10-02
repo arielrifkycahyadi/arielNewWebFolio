@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Artriel Digital Art Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="app">
+    <header class="topbar glass-blur">
+      <div class="brand">
+        <div class="brand-mark">A</div>
+        <div>
+          <p class="eyebrow">MadeAI Studio</p>
+          <h1>Artriel</h1>
+        </div>
+      </div>
+      <nav class="filter-nav" aria-label="Gallery category filters">
+        <button class="filter-btn active" data-filter="All" type="button">All</button>
+        <button class="filter-btn" data-filter="Minimalist" type="button">Minimalist</button>
+        <button class="filter-btn" data-filter="Futurist" type="button">Futurist</button>
+        <button class="filter-btn" data-filter="Tech" type="button">Tech</button>
+      </nav>
+    </header>
+
+    <main class="main-stage">
+      <section class="hero glass-blur">
+        <div class="hero-copy">
+          <p class="eyebrow">Neutral-tech gallery</p>
+          <h2>Artriel Digital Art Gallery</h2>
+          <p>Immersive digital exhibitions with a premium glass interface, dynamic curation, and visual storytelling in pure vanilla web.</p>
+        </div>
+        <div class="hero-meta">
+          <div class="hero-tag">SPA / Lightbox / Bento Grid</div>
+          <div class="hero-tag">Interactive Gallery</div>
+        </div>
+      </section>
+
+      <section class="gallery-section">
+        <div class="section-header">
+          <h3>Curated works</h3>
+          <p>Browse exclusive Artriel pieces across Minimalist, Futurist, and Tech collections.</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid" aria-live="polite"></div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+      <div class="lightbox-backdrop" id="lightboxBackdrop"></div>
+      <div class="lightbox-panel glass-blur" role="document">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close artwork view">×</button>
+        <div class="lightbox-figure">
+          <img id="lightboxImage" src="" alt="Artwork preview">
+        </div>
+        <div class="lightbox-details">
+          <span class="detail-chip" id="lightboxCategory"></span>
+          <h4 id="lightboxTitle"></h4>
+          <p id="lightboxDescription"></p>
+          <div class="detail-meta">
+            <span id="lightboxAuthor"></span>
+            <span id="lightboxTagline">Contemporary digital composition</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer glass-blur">
+      <div class="footer-links">
+        <div>
+          <h4>Artriel</h4>
+          <p>MadeAI brand showcase crafted for immersive digital viewing.</p>
+        </div>
+        <ul>
+          <li><a href="https://www.instagram.com/madeai.ariel" target="_blank" rel="noreferrer">IG: madeai.ariel</a></li>
+          <li><a href="https://www.tiktok.com/@madeai5" target="_blank" rel="noreferrer">TikTok: madeai5</a></li>
+        </ul>
+      </div>
+
+      <div class="cat-game">
+        <div class="cat-card">
+          <div class="cat-portrait" id="catPortrait">
+            <span class="cat-face" id="catFace">😺</span>
+          </div>
+          <div class="cat-status">
+            <h4>Feed the Fat Cat</h4>
+            <p id="catMeterText">Fullness meter: 0 / 5</p>
+            <div class="meter" aria-hidden="true">
+              <div class="meter-fill" id="catMeterFill"></div>
+            </div>
+          </div>
+          <button class="btn btn-primary" id="feedButton" type="button">Feed the Cat</button>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

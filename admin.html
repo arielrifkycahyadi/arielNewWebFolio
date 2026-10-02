@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Ariel Cloud Studio & CMS | Mobile & Desktop</title>
+  
+  <!-- Tailwind CSS v4 Play CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <!-- Supabase JS CDN v2 -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <!-- Cloud Master Engine -->
+  <script src="supabase-config.js"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .custom-gradient {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+    /* Smooth touch scrolling */
+    .touch-scroll {
+      -webkit-overflow-scrolling: touch;
+    }
+    /* Hide scrollbars for clean mobile view */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="custom-gradient text-slate-800 min-h-screen flex flex-col pb-20 md:pb-6">
+
+  <!-- TOAST NOTIFICATION CONTAINER (Floating on mobile & desktop) -->
+  <div id="toastContainer" class="fixed top-5 left-1/2 -translate-x-1/2 z-50 w-11/12 max-w-md flex flex-col gap-2 pointer-events-none"></div>
+
+  <!-- ========================================== -->
+  <!-- 1. LOGIN SCREEN (Untuk Akun Khusus Ariel)   -->
+  <!-- ========================================== -->
+  <div id="loginScreen" class="min-h-screen flex items-center justify-center p-4">
+    <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-xl max-w-md w-full flex flex-col gap-6">
+      
+      <div class="flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-2xl bg-slate-900 flex items-center justify-center text-white shadow-md shadow-slate-900/10 shrink-0">
+          <i data-lucide="shield-check" class="w-6 h-6 text-emerald-400"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-extrabold text-slate-900 tracking-tight leading-tight">Ariel Cloud Studio</h1>
+          <p class="text-xs text-slate-500 mt-0.5">Sistem CMS Otomatis Berbasis Supabase & Vercel</p>
+        </div>
+      </div>
+
+      <!-- Auth Form -->
+      <form id="authForm" class="flex flex-col gap-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Identitas Akun</label>
+          <input 
+            type="text" 
+            id="authIdentity" 
+            required 
+            placeholder="arielusman atau madeaircun@gmail.com" 
+            class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium"
+          />
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5">Kunci Sandi (Password)</label>
+          <input 
+            type="password" 
+            id="authPassword" 
+            required 
+            placeholder="••••••••••••" 
+            class="w-full px-4 py-3.5 bg-slate-50 border border-slate-200 rounded-2xl text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-mono"
+          />
+        </div>
+
+        <button 
+          type="submit" 
+          id="btnAuthLogin" 
+          class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-2xl transition-all shadow-lg shadow-slate-900/15 text-sm flex items-center justify-center gap-2 cursor-pointer mt-1 active:scale-98"
+        >
+          <i data-lucide="unlock" class="w-4 h-4 text-emerald-400"></i> Masuk ke Studio
+        </button>
+      </form>
+
+      <!-- Quick Tips -->
+      <div class="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 flex items-start gap-3">
+        <i data-lucide="smartphone" class="w-5 h-5 text-emerald-600 shrink-0 mt-0.5"></i>
+        <div class="text-xs text-emerald-900">
+          <p class="font-bold">Dapat Diakses dari Smartphone & Tablet</p>
+          <p class="text-emerald-700 text-[11px] mt-0.5">Unggah portofolio & sertifikat langsung dari kamera atau galeri foto HP Anda.</p>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-100 pt-3 flex items-center justify-between text-xs text-slate-400">
+        <a href="/" class="hover:text-emerald-600 flex items-center gap-1 font-medium text-slate-600">
+          <i data-lucide="arrow-left" class="w-3.5 h-3.5"></i> Lihat Website
+        </a>
+        <span>Vercel + Supabase Cloud</span>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- 2. MAIN CMS STUDIO (Terproteksi)          -->
+  <!-- ========================================== -->
+  <div id="mainStudio" class="hidden flex flex-col flex-grow">
+    
+    <!-- Top Header Navigation -->
+    <header class="sticky top-0 z-40 backdrop-blur-md bg-white/85 border-b border-slate-200/80 px-4 sm:px-6 py-3.5">
+      <div class="max-w-6xl mx-auto flex items-center justify-between">
+        
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-slate-900 flex items-center justify-center text-white shadow-sm shrink-0">
+            <i data-lucide="database" class="w-5 h-5 text-emerald-400"></i>
+          </div>
+          <div>
+            <h1 class="font-extrabold text-sm sm:text-base text-slate-900 tracking-tight flex items-center gap-2">
+              Ariel Cloud Studio
+              <span id="cloudStatusBadge" class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Offline
+              </span>
+            </h1>
+            <p class="text-[11px] text-slate-500 -mt-0.5 hidden sm:block">Upload Otomatis ke Supabase Database & Vercel</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2 sm:gap-3">
+          <!-- Setup Config Button -->
+          <button id="btnOpenConfig" class="p-2.5 sm:px-3 sm:py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all cursor-pointer" title="Pengaturan Database">
+            <i data-lucide="key-round" class="w-4 h-4 text-slate-600"></i>
+            <span class="hidden sm:inline">Kunci API</span>
+          </button>
+
+          <!-- View Live Web -->
+          <a href="/dashboard" target="_blank" class="p-2.5 sm:px-3.5 sm:py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200/80 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-all" title="Buka Dashboard">
+            <i data-lucide="external-link" class="w-4 h-4"></i>
+            <span class="hidden sm:inline">Web Live</span>
+          </a>
+
+          <!-- Logout -->
+          <button id="btnStudioLogout" class="p-2.5 bg-rose-50 hover:bg-rose-100 text-rose-600 rounded-xl transition-all cursor-pointer" title="Keluar">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </header>
+
+    <!-- Supabase Configuration Modal / Drawer -->
+    <div id="configModal" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+      <div class="bg-white rounded-3xl p-6 max-w-lg w-full shadow-2xl border border-slate-200 flex flex-col gap-5 animate-in fade-in duration-200">
+        
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2.5">
+            <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-700 flex items-center justify-center font-bold">
+              <i data-lucide="settings" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <h2 class="font-bold text-slate-900 text-sm">Pengaturan Database Supabase</h2>
+              <p class="text-[11px] text-slate-500">Kredensial disimpan aman di browser Anda</p>
+            </div>
+          </div>
+          <button id="btnCloseConfig" class="text-slate-400 hover:text-slate-700 p-1 rounded-lg">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-3.5 text-xs">
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Supabase Project URL</label>
+            <input type="text" id="cfgSupabaseUrl" placeholder="https://xyzabcdefg.supabase.co" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono focus:border-emerald-500 focus:outline-none" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-600 mb-1">Supabase Anon Public Key</label>
+            <input type="password" id="cfgSupabaseKey" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono focus:border-emerald-500 focus:outline-none" />
+          </div>
+
+          <div class="p-3 bg-slate-50 border border-slate-200 rounded-xl text-[11px] text-slate-600 flex items-start gap-2">
+            <i data-lucide="info" class="w-4 h-4 text-emerald-600 shrink-0 mt-0.5"></i>
+            <span>Dapatkan URL & Anon Key di dashboard <b>Supabase -> Project Settings -> API</b>. Setelah disimpan, Anda bisa mengunggah file tanpa perlu mengetik kode apapun!</span>
+          </div>
+        </div>
+
+        <div class="flex justify-end gap-2 pt-2 border-t border-slate-100">
+          <button id="btnCancelConfig" class="px-4 py-2.5 text-xs font-semibold text-slate-600 hover:bg-slate-100 rounded-xl cursor-pointer">Batal</button>
+          <button id="btnSaveConfig" class="px-5 py-2.5 text-xs font-bold bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl shadow-md shadow-emerald-100 flex items-center gap-1.5 cursor-pointer">
+            <i data-lucide="check" class="w-4 h-4"></i> Simpan & Hubungkan
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Desktop Tabs Bar (Hidden on Mobile) -->
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 pt-5 w-full hidden md:block">
+      <div class="flex items-center gap-2 border-b border-slate-200 pb-2.5">
+        <button class="nav-tab-btn active px-4 py-2.5 rounded-xl text-xs font-bold bg-slate-900 text-white flex items-center gap-2 transition-all cursor-pointer" data-tab="tab-portfolio">
+          <i data-lucide="folder-git-2" class="w-4 h-4 text-emerald-400"></i> Kelola Portofolio
+        </button>
+        <button class="nav-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 flex items-center gap-2 transition-all cursor-pointer" data-tab="tab-certificates">
+          <i data-lucide="award" class="w-4 h-4 text-emerald-500"></i> Kelola Sertifikat
+        </button>
+        <button class="nav-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 flex items-center gap-2 transition-all cursor-pointer" data-tab="tab-vault">
+          <i data-lucide="shield-check" class="w-4 h-4 text-emerald-500"></i> Vault Berkas Penting
+        </button>
+        <button class="nav-tab-btn px-4 py-2.5 rounded-xl text-xs font-bold bg-white text-slate-600 hover:bg-slate-50 border border-slate-200 flex items-center gap-2 transition-all cursor-pointer" data-tab="tab-database">
+          <i data-lucide="database" class="w-4 h-4 text-emerald-500"></i> Status & Backup
+        </button>
+      </div>
+    </div>
+
+    <!-- Main Content Panels -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-6 w-full flex-grow flex flex-col gap-6">
+
+      <!-- ============================================== -->
+      <!-- TAB 1: PORTOFOLIO STUDIO                       -->
+      <!-- ============================================== -->
+      <div id="tab-portfolio" class="tab-panel flex flex-col gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Upload Form -->
+          <div class="lg:col-span-5 bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
+            <div>
+              <h2 class="font-extrabold text-slate-900 text-base">Unggah Portofolio Baru</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Otomatis masuk ke database Supabase & tampil di website</p>
+            </div>
+
+            <form id="formPortfolio" class="flex flex-col gap-3.5">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Judul Portofolio *</label>
+                <input type="text" id="portTitle" required placeholder="Contoh: Kalimba Virtual Web Audio" class="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Kategori *</label>
+                <select id="portCategory" required class="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium">
+                  <option value="creative">🎨 Desain & Kreatif</option>
+                  <option value="interactive">🎰 Simulator & Game</option>
+                  <option value="learning">📖 Edukasi & Pengetahuan</option>
+                  <option value="lifestyle">🌱 Mindset & Hubungan</option>
+                  <option value="tools">🛠️ Utilitas & App</option>
+                  <option value="writing">✍️ Karya Tulis & Opini</option>
+                  <option value="branding">💼 Branding & Konsultan</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">URL / Link Tujuan *</label>
+                <input type="url" id="portUrl" required placeholder="https://arielrifkycahyadi.github.io/... atau Drive Link" class="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-mono" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Google Drive Folder ID (Opsional)</label>
+                <input type="text" id="portDriveId" placeholder="Misal: 16NDhmqz54x062vo6gMBS5GTErYp_rsC5" class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs font-mono" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Deskripsi Singkat</label>
+                <textarea id="portDesc" rows="3" placeholder="Jelaskan peran, fitur, atau ringkasan karya ini..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"></textarea>
+              </div>
+
+              <!-- Smartphone Image Upload with Live Preview -->
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Thumbnail Gambar (Kamera / Galeri HP)</label>
+                <div class="flex items-center gap-3">
+                  <label class="flex-grow flex items-center justify-center gap-2 p-3 bg-slate-50 border-2 border-dashed border-slate-200 hover:border-emerald-500 rounded-2xl cursor-pointer transition-all">
+                    <i data-lucide="camera" class="w-5 h-5 text-emerald-600"></i>
+                    <span class="text-xs font-semibold text-slate-700" id="thumbFileLabel">Pilih Foto / Gambar</span>
+                    <input type="file" id="portThumbFile" accept="image/*" class="hidden" />
+                  </label>
+                  <img id="thumbPreview" class="w-12 h-12 rounded-xl object-cover border border-slate-200 hidden" alt="Preview" />
+                </div>
+              </div>
+
+              <button type="submit" id="btnSubmitPort" class="w-full bg-emerald-500 hover:bg-emerald-600 active:scale-98 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-emerald-100 transition-all text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer mt-2">
+                <i data-lucide="plus-circle" class="w-4 h-4"></i> Publikasikan Portofolio
+              </button>
+            </form>
+          </div>
+
+          <!-- Active List -->
+          <div class="lg:col-span-7 bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
+            
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-100 pb-3">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-sm sm:text-base">Katalog Portofolio</h3>
+                <p class="text-[11px] text-slate-500" id="portCountText">Memuat...</p>
+              </div>
+
+              <!-- Quick Search on Phone -->
+              <div class="relative w-full sm:w-60">
+                <i data-lucide="search" class="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+                <input type="text" id="searchPortInput" placeholder="Cari karya..." class="w-full pl-9 pr-3 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:outline-none focus:border-emerald-500" />
+              </div>
+            </div>
+
+            <!-- Scrollable Cards -->
+            <div id="portItemsList" class="flex flex-col gap-3 max-h-[580px] overflow-y-auto touch-scroll pr-1">
+              <p class="text-xs text-slate-400 py-10 text-center">Memuat koleksi portofolio...</p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ============================================== -->
+      <!-- TAB 2: SERTIFIKAT STUDIO                       -->
+      <!-- ============================================== -->
+      <div id="tab-certificates" class="tab-panel hidden flex flex-col gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <div class="lg:col-span-5 bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
+            <div>
+              <h2 class="font-extrabold text-slate-900 text-base">Unggah Sertifikat Baru</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Berkas PDF atau Gambar langsung diunggah ke Supabase Storage</p>
+            </div>
+
+            <form id="formCert" class="flex flex-col gap-3.5">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Nama Sertifikat *</label>
+                <input type="text" id="certTitle" required placeholder="Contoh: Certified AI Automation Engineer" class="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Penerbit / Lembaga *</label>
+                <input type="text" id="certIssuer" required placeholder="Contoh: Google, SkillID, Domestika, Canva" class="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Kategori *</label>
+                <select id="certCategory" required class="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium">
+                  <option value="ai">🤖 AI & Otomasi</option>
+                  <option value="design">🎨 Canva & Desain</option>
+                  <option value="office">📊 Office & Excel</option>
+                  <option value="edu">🎓 Akademik & Sekolah</option>
+                </select>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Pilih Dokumen Sertifikat (PDF / Foto) *</label>
+                <label class="flex items-center justify-center gap-2 p-3 bg-slate-50 border-2 border-dashed border-slate-200 hover:border-emerald-500 rounded-2xl cursor-pointer transition-all">
+                  <i data-lucide="file-up" class="w-5 h-5 text-emerald-600"></i>
+                  <span class="text-xs font-semibold text-slate-700" id="certFileLabel">Pilih File PDF / Gambar</span>
+                  <input type="file" id="certDocFile" required accept=".pdf,image/*" class="hidden" />
+                </label>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Deskripsi Kompetensi</label>
+                <textarea id="certDesc" rows="3" placeholder="Uraikan keahlian atau materi yang dicapai..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"></textarea>
+              </div>
+
+              <button type="submit" id="btnSubmitCert" class="w-full bg-emerald-500 hover:bg-emerald-600 active:scale-98 text-white font-bold py-3.5 rounded-2xl shadow-lg shadow-emerald-100 transition-all text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer mt-2">
+                <i data-lucide="upload-cloud" class="w-4 h-4"></i> Simpan & Unggah Sertifikat
+              </button>
+            </form>
+          </div>
+
+          <div class="lg:col-span-7 bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-sm sm:text-base">Koleksi Sertifikat Resmi</h3>
+                <p class="text-[11px] text-slate-500" id="certCountText">Memuat...</p>
+              </div>
+              <button id="btnRefreshCertList" class="p-2 text-slate-500 hover:text-emerald-600 bg-slate-50 rounded-xl cursor-pointer">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div id="certItemsList" class="flex flex-col gap-3 max-h-[580px] overflow-y-auto touch-scroll pr-1">
+              <p class="text-xs text-slate-400 py-10 text-center">Memuat daftar sertifikat...</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ============================================== -->
+      <!-- TAB 3: VAULT DOKUMEN PRIBADI                   -->
+      <!-- ============================================== -->
+      <div id="tab-vault" class="tab-panel hidden flex flex-col gap-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <div class="lg:col-span-5 bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
+            <div>
+              <h2 class="font-extrabold text-slate-900 text-base">Simpan Berkas ke Vault</h2>
+              <p class="text-xs text-slate-500 mt-0.5">Arsip aman dokumen pribadi (CV, scan surat, materi penting)</p>
+            </div>
+
+            <form id="formVault" class="flex flex-col gap-3.5">
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Label / Nama Berkas *</label>
+                <input type="text" id="vaultName" required placeholder="Contoh: CV ATS Ariel Usman 2026 Terbaru" class="w-full px-3.5 py-3 bg-slate-50 border border-slate-200 rounded-xl text-xs sm:text-sm focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all font-medium" />
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Catatan / Keterangan</label>
+                <textarea id="vaultDesc" rows="3" placeholder="Tuliskan catatan versi atau keperluan..." class="w-full px-3.5 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"></textarea>
+              </div>
+
+              <div>
+                <label class="block text-[11px] font-bold text-slate-500 uppercase tracking-wider mb-1">Pilih Berkas *</label>
+                <label class="flex items-center justify-center gap-2 p-3 bg-slate-50 border-2 border-dashed border-slate-200 hover:border-slate-800 rounded-2xl cursor-pointer transition-all">
+                  <i data-lucide="file" class="w-5 h-5 text-slate-800"></i>
+                  <span class="text-xs font-semibold text-slate-700" id="vaultFileLabel">Pilih File dari HP / Komputer</span>
+                  <input type="file" id="vaultDocFile" required class="hidden" />
+                </label>
+              </div>
+
+              <button type="submit" id="btnSubmitVault" class="w-full bg-slate-900 hover:bg-slate-800 active:scale-98 text-white font-bold py-3.5 rounded-2xl shadow-sm transition-all text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer mt-2">
+                <i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i> Amankan ke Cloud Vault
+              </button>
+            </form>
+          </div>
+
+          <div class="lg:col-span-7 bg-white p-5 sm:p-6 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-4">
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+              <div>
+                <h3 class="font-extrabold text-slate-900 text-sm sm:text-base">Arsip Berkas di Vault</h3>
+                <p class="text-[11px] text-slate-500" id="vaultCountText">Memuat...</p>
+              </div>
+              <button id="btnRefreshVaultList" class="p-2 text-slate-500 hover:text-emerald-600 bg-slate-50 rounded-xl cursor-pointer">
+                <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+              </button>
+            </div>
+
+            <div id="vaultItemsList" class="flex flex-col gap-3 max-h-[580px] overflow-y-auto touch-scroll pr-1">
+              <p class="text-xs text-slate-400 py-10 text-center">Memuat arsip berkas...</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- ============================================== -->
+      <!-- TAB 4: DATABASE & SINKRONISASI                 -->
+      <!-- ============================================== -->
+      <div id="tab-database" class="tab-panel hidden flex flex-col gap-6">
+        <div class="bg-white p-6 sm:p-8 rounded-3xl border border-slate-200/80 shadow-sm flex flex-col gap-6">
+          
+          <div>
+            <h2 class="font-extrabold text-slate-900 text-lg">Status Otomasi Cloud & Vercel</h2>
+            <p class="text-xs text-slate-500 mt-1">Sistem ini tidak memerlukan commit JavaScript manual setiap kali mengunggah portofolio atau sertifikat baru.</p>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="p-4 bg-emerald-50/70 border border-emerald-200 rounded-2xl flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500 text-white flex items-center justify-center font-bold">
+                <i data-lucide="zap" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-xs text-emerald-950">Vercel Auto-Serve</h4>
+                <p class="text-[11px] text-emerald-700">CDN Global Super Cepat</p>
+              </div>
+            </div>
+
+            <div class="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-slate-900 text-white flex items-center justify-center font-bold">
+                <i data-lucide="database" class="w-5 h-5 text-emerald-400"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-xs text-slate-950">Supabase Postgres</h4>
+                <p class="text-[11px] text-slate-500">Database Relasional Aktif</p>
+              </div>
+            </div>
+
+            <div class="p-4 bg-blue-50/70 border border-blue-200 rounded-2xl flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-500 text-white flex items-center justify-center font-bold">
+                <i data-lucide="cloud" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-xs text-blue-950">Supabase Storage</h4>
+                <p class="text-[11px] text-blue-700">Upload Media Tanpa Batas</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- JSON Static Export Backup (Optional) -->
+          <div class="border-t border-slate-100 pt-6 flex flex-col gap-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h3 class="font-bold text-sm text-slate-900">Cadangan Statis (Backup JSON)</h3>
+                <p class="text-xs text-slate-500">Ekspor format projects.js jika ingin mencadangkan ke file lokal</p>
+              </div>
+              <div class="flex gap-2">
+                <button id="btnExportJSON" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer">
+                  <i data-lucide="download" class="w-3.5 h-3.5"></i> Generate Backup
+                </button>
+                <button id="btnCopyJSON" class="px-4 py-2 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded-xl text-xs font-bold flex items-center gap-1.5 cursor-pointer">
+                  <i data-lucide="copy" class="w-3.5 h-3.5"></i> Salin
+                </button>
+              </div>
+            </div>
+            <textarea id="jsonBackupOutput" rows="8" readonly class="w-full p-3 bg-slate-900 text-emerald-300 font-mono text-xs rounded-2xl border border-slate-800" placeholder="// Klik Generate Backup..."></textarea>
+          </div>
+
+        </div>
+      </div>
+
+    </main>
+
+    <!-- ============================================== -->
+    <!-- MOBILE BOTTOM NAVIGATION BAR                   -->
+    <!-- ============================================== -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 md:hidden flex items-center justify-around px-2 py-2 safe-bottom">
+      <button class="nav-tab-btn active flex flex-col items-center gap-1 text-[10px] font-bold text-emerald-600 p-2 cursor-pointer" data-tab="tab-portfolio">
+        <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+        <span>Portofolio</span>
+      </button>
+      <button class="nav-tab-btn flex flex-col items-center gap-1 text-[10px] font-semibold text-slate-500 hover:text-slate-900 p-2 cursor-pointer" data-tab="tab-certificates">
+        <i data-lucide="award" class="w-5 h-5"></i>
+        <span>Sertifikat</span>
+      </button>
+      <button class="nav-tab-btn flex flex-col items-center gap-1 text-[10px] font-semibold text-slate-500 hover:text-slate-900 p-2 cursor-pointer" data-tab="tab-vault">
+        <i data-lucide="shield-check" class="w-5 h-5"></i>
+        <span>Vault</span>
+      </button>
+      <button class="nav-tab-btn flex flex-col items-center gap-1 text-[10px] font-semibold text-slate-500 hover:text-slate-900 p-2 cursor-pointer" data-tab="tab-database">
+        <i data-lucide="database" class="w-5 h-5"></i>
+        <span>Status</span>
+      </button>
+    </nav>
+
+  </div>
+
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT LOGIC & SUPABASE INTEGRATION    -->
+  <!-- ========================================== -->
+  <script>
+    // State
+    const AUTH_SESSION_KEY = 'ariel_studio_session';
+    let currentProjects = [];
+    let currentCerts = [];
+    let currentVault = [];
+
+    // DOM Elements
+    const loginScreen = document.getElementById('loginScreen');
+    const mainStudio = document.getElementById('mainStudio');
+    const authForm = document.getElementById('authForm');
+    const authIdentity = document.getElementById('authIdentity');
+    const authPassword = document.getElementById('authPassword');
+    const cloudStatusBadge = document.getElementById('cloudStatusBadge');
+
+    const configModal = document.getElementById('configModal');
+    const btnOpenConfig = document.getElementById('btnOpenConfig');
+    const btnCloseConfig = document.getElementById('btnCloseConfig');
+    const btnCancelConfig = document.getElementById('btnCancelConfig');
+    const btnSaveConfig = document.getElementById('btnSaveConfig');
+    const cfgSupabaseUrl = document.getElementById('cfgSupabaseUrl');
+    const cfgSupabaseKey = document.getElementById('cfgSupabaseKey');
+
+    const btnStudioLogout = document.getElementById('btnStudioLogout');
+
+    // Toast Notification Function (Works great on mobile & desktop)
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('toastContainer');
+      const toast = document.createElement('div');
+      const bg = type === 'success' ? 'bg-slate-900 text-white' : 'bg-rose-600 text-white';
+      const icon = type === 'success' ? 'check-circle-2' : 'alert-triangle';
+      
+      toast.className = `${bg} px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-semibold pointer-events-auto transition-all animate-in fade-in slide-in-from-top-4 duration-300`;
+      toast.innerHTML = `
+        <i data-lucide="${icon}" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+        <span class="flex-grow">${message}</span>
+      `;
+      container.appendChild(toast);
+      lucide.createIcons();
+
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 300);
+      }, 3500);
+    }
+
+    // 1. AUTHENTICATION (Master Cloud Session)
+    function checkAuth() {
+      const session = localStorage.getItem(AUTH_SESSION_KEY);
+      if (session === 'valid_ariel_owner') {
+        showStudio();
+      } else {
+        showLogin();
+      }
+    }
+
+    function showLogin() {
+      loginScreen.classList.remove('hidden');
+      mainStudio.classList.add('hidden');
+      lucide.createIcons();
+    }
+
+    function showStudio() {
+      loginScreen.classList.add('hidden');
+      mainStudio.classList.remove('hidden');
+      updateCloudStatus();
+      loadAllData();
+      lucide.createIcons();
+    }
+
+    authForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const identity = authIdentity.value.trim().toLowerCase();
+      const password = authPassword.value;
+
+      // Akun khusus Ariel Usman
+      const validIdentity = (identity === 'arielusman' || identity === 'madeaircun@gmail.com' || identity === 'ariel');
+      const validPass = (password === 'ArielMadeAI2026!' || password === 'ariel2026');
+
+      if (validIdentity && validPass) {
+        localStorage.setItem(AUTH_SESSION_KEY, 'valid_ariel_owner');
+        showStudio();
+        showToast('Selamat datang di Ariel Cloud Studio!');
+      } else {
+        showToast('Username atau kata sandi salah. Akun ini khusus untuk Ariel Usman.', 'error');
+      }
+    });
+
+    btnStudioLogout.addEventListener('click', () => {
+      if (confirm('Keluar dari studio?')) {
+        localStorage.removeItem(AUTH_SESSION_KEY);
+        showLogin();
+      }
+    });
+
+    // 2. SUPABASE CONNECTION CONFIG
+    function updateCloudStatus() {
+      const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+      if (client) {
+        cloudStatusBadge.className = 'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800';
+        cloudStatusBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span> Supabase Cloud Aktif';
+      } else {
+        cloudStatusBadge.className = 'inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800';
+        cloudStatusBadge.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse"></span> Atur Kunci API';
+      }
+    }
+
+    btnOpenConfig.addEventListener('click', () => {
+      cfgSupabaseUrl.value = localStorage.getItem('ariel_supabase_url') || '';
+      cfgSupabaseKey.value = localStorage.getItem('ariel_supabase_key') || '';
+      configModal.classList.remove('hidden');
+      lucide.createIcons();
+    });
+
+    function closeConfig() {
+      configModal.classList.add('hidden');
+    }
+    btnCloseConfig.addEventListener('click', closeConfig);
+    btnCancelConfig.addEventListener('click', closeConfig);
+
+    btnSaveConfig.addEventListener('click', () => {
+      const url = cfgSupabaseUrl.value.trim();
+      const key = cfgSupabaseKey.value.trim();
+      localStorage.setItem('ariel_supabase_url', url);
+      localStorage.setItem('ariel_supabase_key', key);
+      closeConfig();
+      // Reload master client
+      location.reload();
+    });
+
+    // 3. TAB SWITCHING (Desktop & Mobile Bottom Bar)
+    const tabBtns = document.querySelectorAll('.nav-tab-btn');
+    const tabPanels = document.querySelectorAll('.tab-panel');
+
+    tabBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetTab = btn.getAttribute('data-tab');
+
+        // Update active class on all buttons matching target
+        tabBtns.forEach(b => {
+          if (b.getAttribute('data-tab') === targetTab) {
+            b.classList.add('active');
+            b.classList.remove('bg-white', 'text-slate-600', 'text-slate-500');
+            if (b.closest('nav')) {
+              // Mobile Bottom Bar
+              b.classList.add('text-emerald-600');
+            } else {
+              // Desktop Tab
+              b.classList.add('bg-slate-900', 'text-white');
+            }
+          } else {
+            b.classList.remove('active', 'bg-slate-900', 'text-white', 'text-emerald-600');
+            if (b.closest('nav')) {
+              b.classList.add('text-slate-500');
+            } else {
+              b.classList.add('bg-white', 'text-slate-600');
+            }
+          }
+        });
+
+        // Switch panels
+        tabPanels.forEach(p => {
+          if (p.id === targetTab) {
+            p.classList.remove('hidden');
+          } else {
+            p.classList.add('hidden');
+          }
+        });
+
+        lucide.createIcons();
+      });
+    });
+
+    // 4. IMAGE PREVIEW FOR SMARTPHONE (Thumb & File label)
+    const portThumbFile = document.getElementById('portThumbFile');
+    const thumbFileLabel = document.getElementById('thumbFileLabel');
+    const thumbPreview = document.getElementById('thumbPreview');
+
+    portThumbFile.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) {
+        thumbFileLabel.innerText = file.name.substring(0, 20) + '...';
+        const reader = new FileReader();
+        reader.onload = (ev) => {
+          thumbPreview.src = ev.target.result;
+          thumbPreview.classList.remove('hidden');
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+
+    const certDocFile = document.getElementById('certDocFile');
+    const certFileLabel = document.getElementById('certFileLabel');
+    certDocFile.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) certFileLabel.innerText = file.name;
+    });
+
+    const vaultDocFile = document.getElementById('vaultDocFile');
+    const vaultFileLabel = document.getElementById('vaultFileLabel');
+    vaultDocFile.addEventListener('change', (e) => {
+      const file = e.target.files[0];
+      if (file) vaultFileLabel.innerText = file.name;
+    });
+
+
+    // ==============================================
+    // 5. PORTOFOLIO CRUD & AUTOMATION
+    // ==============================================
+    const formPortfolio = document.getElementById('formPortfolio');
+    const portItemsList = document.getElementById('portItemsList');
+    const portCountText = document.getElementById('portCountText');
+    const searchPortInput = document.getElementById('searchPortInput');
+
+    async function loadPortfolioData() {
+      portItemsList.innerHTML = '<p class="text-xs text-slate-400 py-8 text-center">Mengambil data portofolio...</p>';
+      
+      const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+      if (client) {
+        try {
+          const { data, error } = await client.from('projects').select('*').order('created_at', { ascending: false });
+          if (!error && data) {
+            currentProjects = data;
+            renderPortfolioList(currentProjects);
+            return;
+          }
+        } catch (err) {
+          console.warn('Supabase fetch fallback:', err);
+        }
+      }
+
+      // Fallback local / Node API
+      try {
+        const res = await fetch('/api/projects');
+        const json = await res.json();
+        if (json.success) {
+          currentProjects = json.data;
+          renderPortfolioList(currentProjects);
+          return;
+        }
+      } catch (e) {}
+
+      // Fallback static projects.js if available
+      if (typeof projects !== 'undefined') {
+        currentProjects = [...projects];
+        renderPortfolioList(currentProjects);
+      }
+    }
+
+    function renderPortfolioList(items) {
+      portCountText.innerText = `Total ${items.length} karya portofolio`;
+      if (items.length === 0) {
+        portItemsList.innerHTML = '<p class="text-xs text-slate-400 py-8 text-center">Belum ada data portofolio.</p>';
+        return;
+      }
+
+      portItemsList.innerHTML = items.map(item => `
+        <div class="p-3.5 bg-slate-50 hover:bg-white border border-slate-200/80 rounded-2xl flex items-center justify-between gap-3 transition-all">
+          <div class="overflow-hidden">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">${item.category}</span>
+            <h4 class="font-bold text-xs text-slate-900 mt-1 truncate">${item.title}</h4>
+            <p class="text-[11px] text-slate-500 truncate">${item.description || item.url}</p>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <a href="${item.url}" target="_blank" class="p-2 text-slate-500 hover:text-slate-900 bg-white border border-slate-200 rounded-xl" title="Buka Link">
+              <i data-lucide="external-link" class="w-4 h-4"></i>
+            </a>
+            <button onclick="deleteProjectCloud('${item.id || item.title}')" class="p-2 text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl cursor-pointer" title="Hapus">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    // Search filter
+    searchPortInput.addEventListener('input', (e) => {
+      const q = e.target.value.toLowerCase();
+      const filtered = currentProjects.filter(p => 
+        (p.title || '').toLowerCase().includes(q) || 
+        (p.description || '').toLowerCase().includes(q)
+      );
+      renderPortfolioList(filtered);
+    });
+
+    // Submit New Portfolio
+    formPortfolio.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btnSubmitPort');
+      btn.disabled = true;
+      btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Mengunggah...';
+      lucide.createIcons();
+
+      const title = document.getElementById('portTitle').value.trim();
+      const category = document.getElementById('portCategory').value;
+      const url = document.getElementById('portUrl').value.trim();
+      const driveId = document.getElementById('portDriveId').value.trim();
+      const description = document.getElementById('portDesc').value.trim();
+      const thumbFile = portThumbFile.files[0];
+
+      try {
+        let thumbnailUrl = null;
+        const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+
+        // Upload Thumbnail directly to Supabase if file chosen
+        if (thumbFile && client) {
+          thumbnailUrl = await window.ArielCloud.uploadFile(thumbFile, 'portfolio-assets');
+        }
+
+        if (client) {
+          const { error } = await client.from('projects').insert([{
+            title,
+            category,
+            url,
+            drive_id: driveId || null,
+            description,
+            thumbnail_url: thumbnailUrl
+          }]);
+          if (error) throw error;
+        } else {
+          // Fallback to local server API if Supabase not configured
+          const formData = new FormData();
+          formData.append('title', title);
+          formData.append('category', category);
+          formData.append('url', url);
+          formData.append('driveId', driveId);
+          formData.append('description', description);
+          if (thumbFile) formData.append('thumbnail', thumbFile);
+
+          const res = await fetch('/api/projects', {
+            method: 'POST',
+            body: formData
+          });
+          const json = await res.json();
+          if (!json.success) throw new Error(json.message);
+        }
+
+        showToast('Portofolio berhasil dipublikasikan!');
+        formPortfolio.reset();
+        thumbPreview.classList.add('hidden');
+        thumbFileLabel.innerText = 'Pilih Foto / Gambar';
+        loadPortfolioData();
+      } catch (err) {
+        showToast('Gagal: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i data-lucide="plus-circle" class="w-4 h-4"></i> Publikasikan Portofolio';
+        lucide.createIcons();
+      }
+    });
+
+    window.deleteProjectCloud = async function(idOrTitle) {
+      if (!confirm('Hapus portofolio ini?')) return;
+      const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+      try {
+        if (client) {
+          if (idOrTitle.length > 20) {
+            await client.from('projects').delete().eq('id', idOrTitle);
+          } else {
+            await client.from('projects').delete().eq('title', idOrTitle);
+          }
+        } else {
+          await fetch(`/api/projects/${idOrTitle}`, { method: 'DELETE' });
+        }
+        showToast('Portofolio berhasil dihapus.');
+        loadPortfolioData();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    };
+
+
+    // ==============================================
+    // 6. SERTIFIKAT CRUD & STORAGE
+    // ==============================================
+    const formCert = document.getElementById('formCert');
+    const certItemsList = document.getElementById('certItemsList');
+    const certCountText = document.getElementById('certCountText');
+
+    async function loadCertificatesData() {
+      certItemsList.innerHTML = '<p class="text-xs text-slate-400 py-8 text-center">Mengambil data sertifikat...</p>';
+      
+      const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+      if (client) {
+        try {
+          const { data, error } = await client.from('certificates').select('*').order('created_at', { ascending: false });
+          if (!error && data) {
+            currentCerts = data;
+            renderCertList(currentCerts);
+            return;
+          }
+        } catch (err) {}
+      }
+
+      // Fallback
+      try {
+        const res = await fetch('/api/certificates');
+        const json = await res.json();
+        if (json.success) {
+          currentCerts = json.data;
+          renderCertList(currentCerts);
+          return;
+        }
+      } catch (e) {}
+    }
+
+    function renderCertList(items) {
+      certCountText.innerText = `Total ${items.length} sertifikat resmi`;
+      if (items.length === 0) {
+        certItemsList.innerHTML = '<p class="text-xs text-slate-400 py-8 text-center">Belum ada sertifikat.</p>';
+        return;
+      }
+
+      certItemsList.innerHTML = items.map(item => `
+        <div class="p-3.5 bg-slate-50 hover:bg-white border border-slate-200/80 rounded-2xl flex items-center justify-between gap-3 transition-all">
+          <div class="overflow-hidden">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-700 bg-slate-200 px-2 py-0.5 rounded-md">${item.category} • ${item.issuer}</span>
+            <h4 class="font-bold text-xs text-slate-900 mt-1 truncate">${item.title}</h4>
+            <p class="text-[11px] text-slate-500 truncate">${item.description || item.desc || 'Berkas Terverifikasi'}</p>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <a href="${item.file_url || item.path}" target="_blank" class="p-2 text-emerald-600 hover:text-emerald-800 bg-emerald-50 border border-emerald-200 rounded-xl" title="Lihat Dokumen">
+              <i data-lucide="eye" class="w-4 h-4"></i>
+            </a>
+            <button onclick="deleteCertCloud('${item.id || item.title}')" class="p-2 text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl cursor-pointer" title="Hapus">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    formCert.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const file = certDocFile.files[0];
+      if (!file) {
+        showToast('Pilih dokumen sertifikat!', 'error');
+        return;
+      }
+
+      const btn = document.getElementById('btnSubmitCert');
+      btn.disabled = true;
+      btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Mengunggah Berkas...';
+      lucide.createIcons();
+
+      const title = document.getElementById('certTitle').value.trim();
+      const issuer = document.getElementById('certIssuer').value.trim();
+      const category = document.getElementById('certCategory').value;
+      const desc = document.getElementById('certDesc').value.trim();
+
+      try {
+        const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+        if (client) {
+          const fileUrl = await window.ArielCloud.uploadFile(file, 'certificates-vault');
+          const { error } = await client.from('certificates').insert([{
+            title,
+            issuer,
+            category,
+            file_url: fileUrl,
+            description: desc
+          }]);
+          if (error) throw error;
+        } else {
+          const formData = new FormData();
+          formData.append('title', title);
+          formData.append('issuer', issuer);
+          formData.append('category', category);
+          formData.append('desc', desc);
+          formData.append('certificateFile', file);
+          const res = await fetch('/api/certificates', { method: 'POST', body: formData });
+          const json = await res.json();
+          if (!json.success) throw new Error(json.message);
+        }
+
+        showToast('Sertifikat berhasil diunggah & disimpan!');
+        formCert.reset();
+        certFileLabel.innerText = 'Pilih File PDF / Gambar';
+        loadCertificatesData();
+      } catch (err) {
+        showToast('Gagal: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i data-lucide="upload-cloud" class="w-4 h-4"></i> Simpan & Unggah Sertifikat';
+        lucide.createIcons();
+      }
+    });
+
+    window.deleteCertCloud = async function(idOrTitle) {
+      if (!confirm('Hapus sertifikat ini?')) return;
+      const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+      try {
+        if (client) {
+          if (idOrTitle.length > 20) {
+            await client.from('certificates').delete().eq('id', idOrTitle);
+          } else {
+            await client.from('certificates').delete().eq('title', idOrTitle);
+          }
+        } else {
+          await fetch(`/api/certificates/${idOrTitle}`, { method: 'DELETE' });
+        }
+        showToast('Sertifikat berhasil dihapus.');
+        loadCertificatesData();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    };
+
+
+    // ==============================================
+    // 7. VAULT CRUD & STORAGE
+    // ==============================================
+    const formVault = document.getElementById('formVault');
+    const vaultItemsList = document.getElementById('vaultItemsList');
+    const vaultCountText = document.getElementById('vaultCountText');
+
+    async function loadVaultData() {
+      vaultItemsList.innerHTML = '<p class="text-xs text-slate-400 py-8 text-center">Mengambil arsip vault...</p>';
+      
+      const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+      if (client) {
+        try {
+          const { data, error } = await client.from('important_files').select('*').order('created_at', { ascending: false });
+          if (!error && data) {
+            currentVault = data;
+            renderVaultList(currentVault);
+            return;
+          }
+        } catch (err) {}
+      }
+
+      try {
+        const res = await fetch('/api/vault');
+        const json = await res.json();
+        if (json.success) {
+          currentVault = json.data;
+          renderVaultList(currentVault);
+          return;
+        }
+      } catch (e) {}
+    }
+
+    function renderVaultList(items) {
+      vaultCountText.innerText = `Total ${items.length} berkas di Vault`;
+      if (items.length === 0) {
+        vaultItemsList.innerHTML = '<p class="text-xs text-slate-400 py-8 text-center">Belum ada berkas tersimpan.</p>';
+        return;
+      }
+
+      vaultItemsList.innerHTML = items.map(item => `
+        <div class="p-3.5 bg-slate-50 hover:bg-white border border-slate-200/80 rounded-2xl flex items-center justify-between gap-3 transition-all">
+          <div class="overflow-hidden">
+            <h4 class="font-bold text-xs text-slate-900 truncate">${item.file_name || item.fileName}</h4>
+            <p class="text-[11px] text-slate-500 truncate">${item.description || item.file_type || 'Berkas Dokumen'}</p>
+          </div>
+          <div class="flex items-center gap-1.5 shrink-0">
+            <a href="${item.file_url || item.fileUrl}" target="_blank" download class="p-2 text-slate-700 hover:text-slate-900 bg-white border border-slate-200 rounded-xl" title="Unduh">
+              <i data-lucide="download" class="w-4 h-4"></i>
+            </a>
+            <button onclick="navigator.clipboard.writeText('${item.file_url || item.fileUrl}'); showToast('Link berhasil disalin!');" class="p-2 text-slate-700 hover:text-slate-900 bg-white border border-slate-200 rounded-xl cursor-pointer" title="Salin Link">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+            </button>
+            <button onclick="deleteVaultCloud('${item.id}')" class="p-2 text-rose-500 hover:text-rose-700 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-xl cursor-pointer" title="Hapus">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+      `).join('');
+      lucide.createIcons();
+    }
+
+    formVault.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const file = vaultDocFile.files[0];
+      if (!file) return;
+
+      const btn = document.getElementById('btnSubmitVault');
+      btn.disabled = true;
+      btn.innerHTML = '<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i> Mengamankan...';
+      lucide.createIcons();
+
+      const fileName = document.getElementById('vaultName').value.trim();
+      const desc = document.getElementById('vaultDesc').value.trim();
+
+      try {
+        const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+        if (client) {
+          const fileUrl = await window.ArielCloud.uploadFile(file, 'important-vault');
+          const { error } = await client.from('important_files').insert([{
+            file_name: fileName,
+            file_url: fileUrl,
+            file_type: file.type || file.name.split('.').pop(),
+            description: desc
+          }]);
+          if (error) throw error;
+        } else {
+          const formData = new FormData();
+          formData.append('fileName', fileName);
+          formData.append('description', desc);
+          formData.append('vaultFile', file);
+          const res = await fetch('/api/vault', { method: 'POST', body: formData });
+          const json = await res.json();
+          if (!json.success) throw new Error(json.message);
+        }
+
+        showToast('Berkas berhasil diamankan di Cloud Vault!');
+        formVault.reset();
+        vaultFileLabel.innerText = 'Pilih File dari HP / Komputer';
+        loadVaultData();
+      } catch (err) {
+        showToast('Gagal: ' + err.message, 'error');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i data-lucide="lock" class="w-4 h-4 text-emerald-400"></i> Amankan ke Cloud Vault';
+        lucide.createIcons();
+      }
+    });
+
+    window.deleteVaultCloud = async function(id) {
+      if (!confirm('Hapus berkas ini dari Vault?')) return;
+      const client = window.ArielCloud ? window.ArielCloud.getClient() : null;
+      try {
+        if (client) {
+          await client.from('important_files').delete().eq('id', id);
+        } else {
+          await fetch(`/api/vault/${id}`, { method: 'DELETE' });
+        }
+        showToast('Berkas dihapus dari Vault.');
+        loadVaultData();
+      } catch (err) {
+        showToast(err.message, 'error');
+      }
+    };
+
+
+    // ==============================================
+    // 8. BACKUP EXPORT & INITIAL LOAD
+    // ==============================================
+    document.getElementById('btnExportJSON').addEventListener('click', () => {
+      const output = document.getElementById('jsonBackupOutput');
+      const exportArray = currentProjects.map(item => ({
+        title: item.title,
+        url: item.url,
+        driveId: item.drive_id || item.driveId || undefined,
+        category: item.category,
+        description: item.description
+      }));
+      output.value = 'const projects = ' + JSON.stringify(exportArray, null, 2) + ';';
+      showToast('Cadangan JSON berhasil dibuat.');
+    });
+
+    document.getElementById('btnCopyJSON').addEventListener('click', () => {
+      const output = document.getElementById('jsonBackupOutput');
+      if (output.value) {
+        navigator.clipboard.writeText(output.value);
+        showToast('Kode JSON berhasil disalin!');
+      }
+    });
+
+    function loadAllData() {
+      loadPortfolioData();
+      loadCertificatesData();
+      loadVaultData();
+    }
+
+    // Refresh buttons
+    document.getElementById('btnRefreshCertList').addEventListener('click', loadCertificatesData);
+    document.getElementById('btnRefreshVaultList').addEventListener('click', loadVaultData);
+
+    // Realtime Cloud Auto-Sync Listeners
+    if (window.ArielCloud) {
+      window.ArielCloud.listen('projects', () => loadPortfolioData());
+      window.ArielCloud.listen('certificates', () => loadCertificatesData());
+      window.ArielCloud.listen('important_files', () => loadVaultData());
+    }
+
+    // Start
+    checkAuth();
+  </script>
+</body>
+</html>

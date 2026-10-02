@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kredensial & Sertifikat | Ariel Usman</title>
+  
+  <!-- Tailwind CSS v4 Play CDN -->
+  <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .custom-gradient {
+      background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="custom-gradient text-slate-800 min-h-screen flex flex-col">
+
+  <!-- Navigation -->
+  <nav class="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2 group">
+        <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-xl shadow-md shadow-emerald-200 group-hover:scale-105 transition-transform">
+          AU
+        </div>
+        <div>
+          <span class="font-extrabold text-lg tracking-tight block">Ariel Usman</span>
+          <span class="text-xs text-slate-500 -mt-1 block">Creative Polymath & Creator</span>
+        </div>
+      </a>
+      
+      <div class="hidden md:flex items-center gap-8 font-medium">
+        <a href="/" class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="home" class="w-4 h-4"></i> Beranda
+        </a>
+        <a href="/dashboard" class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="layout-grid" class="w-4 h-4"></i> Dashboard
+        </a>
+        <a href="/about" class="text-emerald-600 hover:text-emerald-700 transition-colors flex items-center gap-1.5">
+          <i data-lucide="user" class="w-4 h-4"></i> Tentang Saya
+        </a>
+        <a href="/contact" class="text-slate-600 hover:text-emerald-600 transition-colors flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-4 h-4"></i> Kontak
+        </a>
+      </div>
+
+      <div>
+        <a href="/about" class="bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-xl font-semibold shadow-sm transition-all text-sm">
+          Kembali
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-6 py-8 w-full flex-grow flex flex-col gap-6">
+    <div class="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm">
+      <h1 class="text-2xl font-extrabold text-slate-900">Portofolio Sertifikat & Kredensial</h1>
+      <p class="text-sm text-slate-500 mt-1">Daftar sertifikat keahlian resmi Ariel yang mendukung berbagai aspek skillset teknologi dan kreatifnya.</p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="categoryTabs">
+      <button data-category="all" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-emerald-500 text-white shadow-sm transition-all cursor-pointer">
+        Semua Sertifikat
+      </button>
+      <button data-category="ai" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        🤖 AI & Otomasi
+      </button>
+      <button data-category="design" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        🎨 Canva & Desain
+      </button>
+      <button data-category="office" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        📊 Office & Excel
+      </button>
+      <button data-category="edu" class="px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer">
+        🎓 Akademik & Sekolah
+      </button>
+    </div>
+
+    <!-- Content Grid with Preview -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Left: Cards -->
+      <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4" id="certGrid">
+        <!-- JS Injected Cards -->
+      </div>
+
+      <!-- Right: Preview Pane -->
+      <div class="lg:col-span-5 lg:sticky lg:top-24 bg-white border border-slate-100 rounded-3xl shadow-sm p-6 flex flex-col gap-4 h-[600px]">
+        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+          <div class="flex items-center gap-2 text-slate-700">
+            <i data-lucide="eye" class="w-5 h-5 text-emerald-500"></i>
+            <h2 class="font-extrabold text-lg text-slate-900">Lihat Dokumen</h2>
+          </div>
+          <span class="text-xs font-semibold px-2.5 py-1 bg-slate-100 text-slate-500 rounded-full" id="previewCategory">Pilih File</span>
+        </div>
+
+        <div class="flex-grow bg-slate-50 rounded-2xl border border-slate-200/60 overflow-hidden relative flex flex-col items-center justify-center text-center p-6" id="previewViewport">
+          <div class="flex flex-col items-center gap-3 text-slate-400" id="previewPlaceholder">
+            <div class="w-16 h-16 rounded-2xl bg-slate-100 flex items-center justify-center text-slate-300">
+              <i data-lucide="file-text" class="w-10 h-10"></i>
+            </div>
+            <div>
+              <p class="font-bold text-slate-600 text-sm">Belum Ada File Terpilih</p>
+              <p class="text-xs text-slate-400 max-w-xs mt-1">Klik "Preview" di salah satu sertifikat untuk menampilkannya di panel ini.</p>
+            </div>
+          </div>
+          <iframe id="previewIframe" class="w-full h-full border-none hidden" title="Certificate Preview"></iframe>
+        </div>
+
+        <div id="previewMeta" class="hidden flex flex-col gap-3">
+          <div>
+            <h3 class="font-bold text-slate-950 text-base leading-snug" id="previewTitle">Nama Sertifikat</h3>
+            <p class="text-slate-500 text-xs mt-1" id="previewIssuer">Penerbit</p>
+          </div>
+          <a href="#" target="_blank" id="btnOpenNew" class="bg-slate-900 hover:bg-slate-800 text-white py-2.5 rounded-xl font-semibold text-center text-sm shadow-sm transition-all flex items-center justify-center gap-2">
+            <i data-lucide="external-link" class="w-4 h-4"></i> Buka File Penuh
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-6 mt-auto border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 text-center text-xs">
+      &copy; 2026 Ariel Usman. Seluruh Hak Cipta Dilindungi.
+    </div>
+  </footer>
+
+  <!-- Supabase Live Sync -->
+  <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <script src="supabase-config.js"></script>
+  <script>
+    const defaultCertificates = [
+      // AI & Otomasi
+      {
+        title: 'AI & Automation Specialist',
+        issuer: 'SkillID',
+        category: 'ai',
+        path: 'sertifkat/AI SkillID/AI & AUTOMATION.pdf',
+        desc: 'Sertifikasi kompetensi dalam otomatisasi alur kerja dan kecerdasan buatan terapan.'
+      },
+      {
+        title: 'Developing with AI (Vibe Coding)',
+        issuer: 'SkillID',
+        category: 'ai',
+        path: 'sertifkat/AI SkillID/DEVELOPING WITH AI VIBE CODING.pdf',
+        desc: 'Sertifikat keahlian menggunakan model AI untuk pemrograman kolaboratif/asisten coding.'
+      },
+      {
+        title: 'Professional Skill in AI',
+        issuer: 'SkillID',
+        category: 'ai',
+        path: 'sertifkat/AI SkillID/Professional Skill AI.pdf',
+        desc: 'Kompetensi tingkat lanjut penerapan AI pada solusi industri dan produktivitas harian.'
+      },
+      {
+        title: 'Crash Course on Python',
+        issuer: 'Google (via Coursera)',
+        category: 'ai',
+        path: 'sertifkat/AI Coursera/Coursera Crash Course on Python.pdf',
+        desc: 'Sertifikat dasar pemrograman berorientasi objek menggunakan Python.'
+      },
+      {
+        title: 'AI for Content Marketing',
+        issuer: 'Professional AI Course',
+        category: 'ai',
+        path: 'sertifkat/Profesional AI/Artificial Intelligence/AI FOR CONTENT MARKETING.pdf',
+        desc: 'Pemanfaatan model bahasa besar untuk branding dan marketing visual.'
+      },
+
+      // Canva & Desain
+      {
+        title: 'Kampanye Kreatif Skala Besar',
+        issuer: 'Canva Academy',
+        category: 'design',
+        path: 'sertifkat/Canva/ariel-rifky-cahyadi-kampanye-kreatif-skala-besar-certificate.pdf',
+        desc: 'Sertifikat merancang media publikasi visual skala industri menggunakan platform Canva.'
+      },
+      {
+        title: 'Membuat Konten Visual Memikat',
+        issuer: 'Canva Academy',
+        category: 'design',
+        path: 'sertifkat/Canva/ariel-rifky-cahyadi-buat-konten-memikat-certificate.pdf',
+        desc: 'Kemahiran menciptakan aset media sosial penarik keterlibatan visual audiens.'
+      },
+      {
+        title: 'Perkenalan Aplikasi Visual Canva',
+        issuer: 'Canva Academy',
+        category: 'design',
+        path: 'sertifkat/Canva/ariel-rifky-cahyadi-perkenalan-aplikasi-visual-canva-certificate.pdf',
+        desc: 'Sertifikat penguasaan antarmuka dasar dan komponen desain visual.'
+      },
+      {
+        title: 'Digital Illustration - Mythical Beasts',
+        issuer: 'Digital Art Studio',
+        category: 'design',
+        path: 'sertifkat/Illustrasi Digital/Gambar Mahluk Fantasi/certificate-mythical-beasts-bikin-makhluk-fantasi-67efb75e337a602c4201c29a.pdf',
+        desc: 'Sertifikat ilustrasi digital spesialisasi desain makhluk fantasi.'
+      },
+      {
+        title: 'Mobile Video Creation for TikTok & Instagram',
+        issuer: 'Domestika',
+        category: 'design',
+        path: 'sertifkat/Domestika/Mobile Video Creation for TikTok and Instagram/Domestika Mobile Video Creation for TikTok and Instagram.pdf',
+        desc: 'Sertifikasi internasional dalam teknik perekaman, transisi, dan editing video pendek.'
+      },
+
+      // Office & Excel
+      {
+        title: 'Excel Sales Analytics Specialist',
+        issuer: 'Microsoft Data Course',
+        category: 'office',
+        path: 'sertifkat/Speasialis Project Excel/Sales Analysis Excel/PROJECT CREATING SALES ANALYTICS IN EXCEL.pdf',
+        desc: 'Sertifikat kelulusan studi kasus visualisasi metrik bisnis penjualan dan analisis tren.'
+      },
+      {
+        title: 'Excel Sales Dashboard Specialist',
+        issuer: 'Microsoft Data Course',
+        category: 'office',
+        path: 'sertifkat/Speasialis Project Excel/Sales Dashboard/PROJECT CREATING SALES DASHBOARD IN EXCEL.pdf',
+        desc: 'Perancangan dasbor metrik dinamis menggunakan Excel formulas, pivot tables, dan charts.'
+      },
+      {
+        title: 'Microsoft Word Advanced Document Elements',
+        issuer: 'Office Certified',
+        category: 'office',
+        path: 'sertifkat/Office Dasar/Microsoft Word/CREATE CUSTOM DOCUMENT ELEMENTS AND ADVANCED FEATURES IN MICROSOFT WORD.pdf',
+        desc: 'Sertifikat pengolahan dokumen bisnis berskala besar secara profesional.'
+      },
+
+      // Akademik & Sekolah
+      {
+        title: 'Praktek Kerja Lapangan (PKL) DPRD',
+        issuer: 'DPRD Office',
+        category: 'edu',
+        path: 'sertifkat/Sertifikat Sekolah/PKL DPRD.pdf',
+        desc: 'Sertifikat penghargaan penyelesaian praktek kerja lapangan di lingkungan sekretariat DPRD.'
+      },
+      {
+        title: 'Becoming a Teacher & Educational Methodology',
+        issuer: 'Pendidikan IT Center',
+        category: 'edu',
+        path: 'sertifkat/Pendidikan/BECOMING A TEACHER.pdf',
+        desc: 'Pelatihan dasar mengajar dan menyusun kurikulum pengajaran IT.'
+      }
+    ];
+
+    const certGrid = document.getElementById('certGrid');
+    const categoryTabs = document.getElementById('categoryTabs');
+    const previewCategory = document.getElementById('previewCategory');
+    const previewViewport = document.getElementById('previewViewport');
+    const previewPlaceholder = document.getElementById('previewPlaceholder');
+    const previewIframe = document.getElementById('previewIframe');
+    const previewMeta = document.getElementById('previewMeta');
+    const previewTitle = document.getElementById('previewTitle');
+    const previewIssuer = document.getElementById('previewIssuer');
+    const btnOpenNew = document.getElementById('btnOpenNew');
+
+    const categories = {
+      all: 'Semua Sertifikat',
+      ai: 'AI & Otomasi',
+      design: 'Canva & Desain',
+      office: 'Office & Excel',
+      edu: 'Akademik & Sekolah'
+    };
+
+    let activeCertificates = [...defaultCertificates];
+    let selectedCategory = 'all';
+
+    function renderCertificates(currentCat = 'all') {
+      selectedCategory = currentCat;
+      certGrid.innerHTML = '';
+      const items = activeCertificates.filter(c => currentCat === 'all' || c.category === currentCat);
+
+      if (items.length === 0) {
+        certGrid.innerHTML = `<p class="text-slate-500 text-sm col-span-full text-center py-8">Tidak ada sertifikat dalam kategori ini.</p>`;
+      } else {
+        items.forEach(c => {
+          const card = document.createElement('div');
+          card.className = "bg-white p-5 rounded-2xl border border-slate-100 shadow-sm flex flex-col justify-between hover:border-emerald-500/40 hover:shadow-md transition-all";
+          
+          let icon = '🎓';
+          if (c.category === 'ai') icon = '🤖';
+          if (c.category === 'design') icon = '🎨';
+          if (c.category === 'office') icon = '📊';
+
+          card.innerHTML = `
+            <div>
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xl">${icon}</span>
+                <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded bg-slate-100 text-slate-500">${c.issuer}</span>
+              </div>
+              <h3 class="font-bold text-slate-900 text-sm line-clamp-2 leading-snug">${c.title}</h3>
+              <p class="text-[11px] text-slate-500 mt-2 line-clamp-2 leading-relaxed">${c.desc}</p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-50 flex items-center justify-end">
+              <button class="text-emerald-500 hover:text-emerald-600 font-bold text-xs flex items-center gap-1 cursor-pointer select-btn">
+                Preview <i data-lucide="eye" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          `;
+          
+          card.querySelector('.select-btn').addEventListener('click', () => selectCert(c));
+          certGrid.appendChild(card);
+        });
+      }
+      lucide.createIcons();
+    }
+
+    function selectCert(c) {
+      previewTitle.textContent = c.title;
+      previewIssuer.textContent = `Penerbit: ${c.issuer}`;
+      previewCategory.textContent = categories[c.category] || c.category;
+
+      previewPlaceholder.classList.add('hidden');
+      previewIframe.classList.remove('hidden');
+      previewIframe.src = c.path;
+      
+      btnOpenNew.href = c.path;
+      previewMeta.classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    categoryTabs.addEventListener('click', (e) => {
+      const button = e.target.closest('button');
+      if (!button) return;
+
+      Array.from(categoryTabs.children).forEach(btn => {
+        btn.className = "px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-white text-slate-600 hover:bg-slate-50 border border-slate-200/60 transition-all cursor-pointer";
+      });
+      button.className = "px-5 py-2 rounded-2xl text-sm font-semibold whitespace-nowrap bg-emerald-500 text-white shadow-sm transition-all cursor-pointer";
+
+      renderCertificates(button.dataset.category);
+    });
+
+    async function initCertificatesData() {
+      try {
+        const res = await fetch('/api/certificates');
+        const json = await res.json();
+        if (json.success && json.data && json.data.length > 0) {
+          activeCertificates = json.data;
+          renderCertificates(selectedCategory);
+          return;
+        }
+      } catch (e) {}
+
+      if (typeof getLiveCertificates === 'function') {
+        const liveCerts = await getLiveCertificates(defaultCertificates);
+        if (liveCerts && liveCerts.length > 0) {
+          activeCertificates = liveCerts;
+          renderCertificates(selectedCategory);
+        }
+      }
+    }
+
+    renderCertificates('all');
+    initCertificatesData();
+
+    // Realtime Cloud Auto-Sync Listener
+    if (window.ArielCloud) {
+      window.ArielCloud.listen('certificates', () => {
+        initCertificatesData();
+      });
+    }
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>

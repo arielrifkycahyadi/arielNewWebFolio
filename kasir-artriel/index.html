@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kasir Artriel - Sistem Point of Sale</title>
+  
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Preconnect for fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+  <!-- ========================================
+       HERO SECTION - Landing Page
+       ======================================== -->
+  <section class="hero">
+    <!-- Floating Cats -->
+    <div class="hero-cat left">🐱</div>
+    <div class="hero-cat right">😺</div>
+    
+    <div class="hero-content">
+      <div class="hero-badge">
+        <span>✨</span>
+        <span>Sistem Kasir Modern</span>
+      </div>
+      
+      <h1 class="hero-title">
+        Kasir <span>Artriel</span>
+      </h1>
+      
+      <p class="hero-subtitle">
+        Sistem Point of Sale responsif dengan desain futuristik. 
+        Kelola bisnis Anda dengan mudah, cepat, dan stylish.
+      </p>
+      
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <span class="hero-stat-value">20+</span>
+          <span class="hero-stat-label">Produk</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">5</span>
+          <span class="hero-stat-label">Kategori</span>
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-value">100%</span>
+          <span class="hero-stat-label">Offline</span>
+        </div>
+      </div>
+      
+      <button class="hero-cta" id="startShoppingBtn">
+        <span>Mulai Belanja</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14M12 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================================
+       MAIN APPLICATION CONTAINER
+       ======================================== -->
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo">
+        <div class="logo-icon">🐱</div>
+        <div class="logo-text">Kasir <span>Artriel</span></div>
+      </div>
+      <div class="header-actions">
+        <button class="header-btn" id="resetBtn">🔄 Reset</button>
+        <button class="header-btn primary" id="newOrderBtn">➕ Pesanan Baru</button>
+      </div>
+    </header>
+
+    <!-- SIDEBAR - LEFT COLUMN -->
+    <aside class="sidebar">
+      <div class="sidebar-title">Navigasi</div>
+      
+      <div class="nav-item active" data-view="products">
+        <span class="nav-icon">🏪</span>
+        <span>Produk</span>
+        <span class="nav-badge">20</span>
+      </div>
+      
+      <div class="nav-item" data-view="history">
+        <span class="nav-icon">📋</span>
+        <span>Riwayat</span>
+      </div>
+      
+      <div class="nav-item" data-view="reports">
+        <span class="nav-icon">📊</span>
+        <span>Laporan</span>
+      </div>
+      
+      <div class="nav-item" data-view="settings">
+        <span class="nav-icon">⚙️</span>
+        <span>Pengaturan</span>
+      </div>
+
+      <div class="sidebar-divider"></div>
+
+      <div class="sidebar-title">Kategori</div>
+      
+      <div class="category-filters">
+        <button class="category-btn active" data-category="all">
+          <span class="emoji">🍽️</span>
+          <span>Semua</span>
+        </button>
+        <button class="category-btn" data-category="makanan">
+          <span class="emoji">🍜</span>
+          <span>Makanan</span>
+        </button>
+        <button class="category-btn" data-category="minuman">
+          <span class="emoji">🧋</span>
+          <span>Minuman</span>
+        </button>
+        <button class="category-btn" data-category="snack">
+          <span class="emoji">🍿</span>
+          <span>Snack</span>
+        </button>
+        <button class="category-btn" data-category="dessert">
+          <span class="emoji">🍰</span>
+          <span>Dessert</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT - CENTER COLUMN -->
+    <main class="main-content">
+      <div class="content-header">
+        <h1 class="content-title">Menu Produk</h1>
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="text" id="searchInput" placeholder="Cari produk...">
+        </div>
+      </div>
+
+      <div class="product-grid" id="productGrid">
+        <!-- Products will be rendered here by JavaScript -->
+      </div>
+    </main>
+
+    <!-- CART PANEL - RIGHT COLUMN -->
+    <aside class="cart-panel">
+      <div class="cart-header">
+        <h2 class="cart-title">
+          🛒 Keranjang
+          <span class="cart-count" id="cartCount">0</span>
+        </h2>
+      </div>
+
+      <div class="cart-items" id="cartItems">
+        <!-- Cart items will be rendered here -->
+        <div class="cart-empty">
+          <div class="cart-empty-icon">🛒</div>
+          <p class="cart-empty-text">Keranjang masih kosong.<br>Tambahkan produk dari menu!</p>
+        </div>
+      </div>
+
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span class="summary-label">Subtotal</span>
+          <span class="summary-value" id="subtotal">Rp 0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Pajak (10%)</span>
+          <span class="summary-value" id="tax">Rp 0</span>
+        </div>
+        <div class="summary-row">
+          <span class="summary-label">Diskon</span>
+          <span class="summary-value" id="discount">- Rp 0</span>
+        </div>
+        
+        <div class="summary-divider"></div>
+        
+        <div class="summary-total">
+          <span class="summary-total-label">Total</span>
+          <span class="summary-total-value" id="total">Rp 0</span>
+        </div>
+
+        <div class="cart-actions">
+          <button class="cart-btn clear" id="clearCartBtn">🗑️ Hapus</button>
+          <button class="cart-btn checkout" id="checkoutBtn">💳 Bayar</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="footer-content">
+        <!-- Brand & Social -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <div class="footer-logo-icon">🐱</div>
+            <span>Kasir Artriel</span>
+          </div>
+          <p class="footer-tagline">
+            Sistem Point of Sale modern dengan desain futuristik. 
+            Dibuat dengan ❤️ untuk bisnis Anda.
+          </p>
+          <div class="footer-social">
+            <a href="https://instagram.com/artrielrcun" target="_blank" class="social-link" title="Instagram">📷</a>
+            <a href="https://tiktok.com/@maybe.aril5" target="_blank" class="social-link" title="TikTok">🎵</a>
+            <a href="https://twitter.com/rifkyariel3" target="_blank" class="social-link" title="X">🐦</a>
+            <a href="https://youtube.com/@arielrifkycahyadi1353" target="_blank" class="social-link" title="YouTube">▶️</a>
+            <a href="mailto:a.r.cusman05789@gmail.com" class="social-link" title="Email">✉️</a>
+          </div>
+        </div>
+
+        <!-- Mini-Game: Feed the Fat Cat -->
+        <div class="minigame-container">
+          <div class="minigame-title">
+            🎮 Feed the Fat Cat
+          </div>
+          <div class="minigame-area" id="minigameArea">
+            <div class="fat-cat" id="fatCat">🐱</div>
+          </div>
+          <div class="game-score">
+            <div class="score-display">
+              <span class="score-icon">🐟</span>
+              <span>Skor: <strong id="gameScore">0</strong></span>
+              <span class="cat-happiness" id="catHappiness">😺</span>
+            </div>
+            <div class="game-controls">
+              <button class="game-btn feed" id="feedBtn">🐟 Beri Makan</button>
+              <button class="game-btn reset" id="resetGameBtn">🔄 Reset</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Details -->
+        <div class="footer-contact">
+          <div class="contact-title">📞 Kontak & Sosial</div>
+          <div class="contact-item">
+            <span class="contact-icon">📷</span>
+            <span>@artrielrcun</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🎵</span>
+            <span>@maybe.aril5</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🐦</span>
+            <span>@rifkyariel3</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">▶️</span>
+            <span>@arielrifkycahyadi1353</span>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">✉️</span>
+            <span>a.r.cusman05789@gmail.com</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        Dibuat oleh: Artriel Ariel
+      </div>
+    </footer>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <span class="toast-icon">✅</span>
+    <span class="toast-message" id="toastMessage">Produk ditambahkan!</span>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+      <div class="modal-icon">🎉</div>
+      <h2 class="modal-title">Pesanan Selesai!</h2>
+      <p class="modal-message" id="modalMessage">
+        Terima kasih telah berbelanja di Kasir Artriel. 
+        Total pembayaran: <strong id="modalTotal">Rp 0</strong>
+      </p>
+      <button class="modal-btn" id="closeModalBtn">Tutup</button>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
