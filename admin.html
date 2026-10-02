@@ -93,17 +93,6 @@
           />
         </div>
 
-        <!-- Quick Fill Helper for Owner -->
-        <div class="p-3 bg-slate-100/90 rounded-2xl border border-slate-200/70 flex items-center justify-between">
-          <div>
-            <p class="text-[11px] font-bold text-slate-700">Kredensial Resmi Ariel</p>
-            <p class="text-[10px] text-slate-500 font-mono">arielusman • ArielMadeAI2026!</p>
-          </div>
-          <button type="button" id="btnQuickFill" class="px-3 py-1.5 text-xs font-bold bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl shadow-xs transition-colors cursor-pointer flex items-center gap-1">
-            <i data-lucide="key-round" class="w-3.5 h-3.5"></i> Isi Cepat
-          </button>
-        </div>
-
         <button 
           type="submit" 
           id="btnAuthLogin" 
@@ -652,15 +641,6 @@
         showToast('Username atau kata sandi salah. Akun ini khusus untuk Ariel Usman.', 'error');
       }
     });
-
-    const btnQuickFill = document.getElementById('btnQuickFill');
-    if (btnQuickFill) {
-      btnQuickFill.addEventListener('click', () => {
-        authIdentity.value = 'arielusman';
-        authPassword.value = 'ArielMadeAI2026!';
-        showToast('Kredensial Ariel Usman berhasil diisi.');
-      });
-    }
 
     btnStudioLogout.addEventListener('click', () => {
       if (confirm('Keluar dari studio?')) {
