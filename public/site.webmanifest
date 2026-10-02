@@ -1,0 +1,21 @@
+{
+  "name": "Ariel Usman | Portfolio & Creative Hub",
+  "short_name": "Ariel Usman",
+  "description": "Portal portofolio resmi Ariel Usman (MADEAI). Kumpulan karya 80+ proyek website, simulator interaktif, desain kreatif, dan tulisan.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "/assets/foto-ariel-utama.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/assets/foto-ariel-utama.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}

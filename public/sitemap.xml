@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+
+  <!-- 1. Homepage / Beranda Utama -->
+  <url>
+    <loc>https://arielrifkycahyadi.vercel.app/</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://arielrifkycahyadi.vercel.app/assets/foto-ariel-utama.jpg</image:loc>
+      <image:title>Ariel Usman - Creative Polymath &amp; Fullstack Web Developer</image:title>
+      <image:caption>Portal Resmi Portofolio Ariel Usman (MADEAI)</image:caption>
+    </image:image>
+  </url>
+
+  <!-- 2. Dashboard Katalog Proyek & Simulator (80+ Apps) -->
+  <url>
+    <loc>https://arielrifkycahyadi.vercel.app/dashboard</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 3. Tentang Saya / Riwayat Hidup & Karir -->
+  <url>
+    <loc>https://arielrifkycahyadi.vercel.app/about</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://arielrifkycahyadi.vercel.app/assets/foto-ariel-2.jpg</image:loc>
+      <image:title>Ariel Usman - Tentang Saya &amp; Biografi</image:title>
+    </image:image>
+  </url>
+
+  <!-- 4. Kredensial & Sertifikat -->
+  <url>
+    <loc>https://arielrifkycahyadi.vercel.app/sertifikat</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- 5. Kontak & Kerjasama -->
+  <url>
+    <loc>https://arielrifkycahyadi.vercel.app/contact</loc>
+    <lastmod>2026-10-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>

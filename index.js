@@ -13,7 +13,11 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-// Serve static assets from root directory
+// Serve static assets with explicit priority for /assets and /sertifkat
+app.use('/assets', express.static(path.join(__dirname, 'public', 'assets'), { maxAge: '1d' }));
+app.use('/assets', express.static(path.join(__dirname, 'assets'), { maxAge: '1d' }));
+app.use('/sertifkat', express.static(path.join(__dirname, 'sertifkat'), { maxAge: '1d' }));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(__dirname));
 
 // Clean URL Page Routes
@@ -28,6 +32,14 @@ app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'admin.html'))
 app.get('/sitemap.xml', (req, res) => res.sendFile(path.join(__dirname, 'sitemap.xml')));
 app.get('/robots.txt', (req, res) => res.sendFile(path.join(__dirname, 'robots.txt')));
 app.get('/site.webmanifest', (req, res) => res.sendFile(path.join(__dirname, 'site.webmanifest')));
+
+// Fallback JSON endpoints for CMS if Supabase is offline
+app.get('/api/projects', (req, res) => {
+  res.json({ success: true, data: [] });
+});
+app.get('/api/certificates', (req, res) => {
+  res.json({ success: true, data: [] });
+});
 
 // Start server when run directly (local development)
 if (require.main === module) {
