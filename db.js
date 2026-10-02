@@ -8,11 +8,24 @@ const path = require('path');
 const { createClient } = require('@supabase/supabase-js');
 require('dotenv').config();
 
-const DATA_DIR = path.join(__dirname, 'data');
-const UPLOADS_DIR = path.join(__dirname, 'uploads');
+const os = require('os');
+const isServerless = Boolean(process.env.VERCEL || process.env.AWS_LAMBDA_FUNCTION_NAME);
 
-if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
-if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+// Use /tmp directory if running in read-only serverless environments like Vercel/AWS Lambda
+const DATA_DIR = isServerless ? path.join(os.tmpdir(), 'ariel_data') : path.join(__dirname, 'data');
+const UPLOADS_DIR = isServerless ? path.join(os.tmpdir(), 'ariel_uploads') : path.join(__dirname, 'uploads');
+
+try {
+  if (!fs.existsSync(DATA_DIR)) fs.mkdirSync(DATA_DIR, { recursive: true });
+} catch (err) {
+  // Read-only filesystem fallback
+}
+
+try {
+  if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+} catch (err) {
+  // Read-only filesystem fallback
+}
 
 const PROJECTS_FILE = path.join(DATA_DIR, 'projects.json');
 const CERTS_FILE = path.join(DATA_DIR, 'certificates.json');
@@ -27,17 +40,26 @@ if (process.env.SUPABASE_URL && (process.env.SUPABASE_SERVICE_ROLE_KEY || proces
   console.log('✅ Supabase Cloud connected successfully.');
 }
 
-// Helper read/write JSON
+// Helper read/write JSON safely
 function readJSON(file, fallback = []) {
   try {
     if (!fs.existsSync(file)) {
-      fs.writeFileSync(file, JSON.stringify(fallback, null, 2), 'utf8');
+      // In serverless, check if bundled copy exists in __dirname/data
+      const baseName = path.basename(file);
+      const bundledFile = path.join(__dirname, 'data', baseName);
+      if (fs.existsSync(bundledFile)) {
+        return JSON.parse(fs.readFileSync(bundledFile, 'utf8'));
+      }
+      try {
+        fs.writeFileSync(file, JSON.stringify(fallback, null, 2), 'utf8');
+      } catch (writeErr) {
+        // Ignore read-only write error
+      }
       return fallback;
     }
     const raw = fs.readFileSync(file, 'utf8');
     return JSON.parse(raw);
   } catch (err) {
-    console.error(`Error reading ${file}:`, err);
     return fallback;
   }
 }
@@ -46,7 +68,7 @@ function writeJSON(file, data) {
   try {
     fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf8');
   } catch (err) {
-    console.error(`Error writing ${file}:`, err);
+    // Fail gracefully on serverless
   }
 }
 

@@ -271,12 +271,18 @@ app.get('/contact', (req, res) => res.sendFile(path.join(__dirname, 'contact.htm
 app.get('/sertifikat', (req, res) => res.sendFile(path.join(__dirname, 'sertifikat-view.html')));
 app.get('/admin', (req, res) => res.sendFile(path.join(__dirname, 'admin.html')));
 
-// Start Server
-app.listen(PORT, () => {
-  console.log(`====================================================`);
-  console.log(`🚀 Ariel Usman Portfolio & CMS Server running!`);
-  console.log(`🌐 URL: http://localhost:${PORT}`);
-  console.log(`🔒 CMS Admin: http://localhost:${PORT}/admin.html`);
-  console.log(`📁 API Projects: http://localhost:${PORT}/api/projects`);
-  console.log(`====================================================`);
-});
+// Start Server (Only when run directly via Node.js, not when imported as serverless function)
+if (require.main === module) {
+  app.listen(PORT, () => {
+    console.log(`====================================================`);
+    console.log(`🚀 Ariel Usman Portfolio & CMS Server running!`);
+    console.log(`🌐 URL: http://localhost:${PORT}`);
+    console.log(`🔒 CMS Admin: http://localhost:${PORT}/admin.html`);
+    console.log(`📁 API Projects: http://localhost:${PORT}/api/projects`);
+    console.log(`====================================================`);
+  });
+}
+
+// Export app for Vercel serverless execution
+module.exports = app;
+
